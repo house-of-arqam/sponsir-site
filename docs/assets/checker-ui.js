@@ -67,12 +67,6 @@ Maya`
     if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') run();
   });
 
-  const params = new URLSearchParams(location.search);
-  if (params.get('sample') && SAMPLES[params.get('sample')]) {
-    input.value = SAMPLES[params.get('sample')];
-    run();
-  }
-
   function run() {
     const text = input.value.trim();
     if (!text) {
@@ -195,5 +189,11 @@ Maya`
         <p class="result-cta">Want this on every email, automatically, inside Gmail? <a href="index.html#waitlist">Join the LegitPitch waitlist</a>.</p>
       </div>`;
     output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  const params = new URLSearchParams(location.search);
+  if (params.get('sample') && SAMPLES[params.get('sample')]) {
+    input.value = SAMPLES[params.get('sample')];
+    run();
   }
 })();
