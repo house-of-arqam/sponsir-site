@@ -1,5 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs><clipPath id="tile"><rect x="4" y="4" width="56" height="56" rx="14"/></clipPath></defs>
   <rect x="4" y="4" width="56" height="56" rx="14" fill="#0F766E"/>
-  <path d="M32 12 16 18v12c0 11 7 19 16 22 9-3 16-11 16-22V18L32 12z" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round"/>
-  <path d="M24 32l6 6 11-12" fill="none" stroke="#5EEAD4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g clip-path="url(#tile)">
+    <path d="M6 64V60c0-7 6-11 14-11h24c8 0 14 4 14 11v4z" fill="#111827"/>
+    <path d="M40 54.5l3-2 2 2-3 2z" fill="#2DD4BF"/>
+  </g>
+  <circle cx="19" cy="21" r="8" fill="#6B3A1E"/>
+  <circle cx="45" cy="21" r="8" fill="#6B3A1E"/>
+  <circle cx="19" cy="21" r="4" fill="#A65A2E"/>
+  <circle cx="45" cy="21" r="4" fill="#A65A2E"/>
+  <circle cx="32" cy="34" r="18" fill="#9A5324"/>
+  <rect x="12" y="31" width="4" height="9" rx="2" fill="#2DD4BF"/>
+  <ellipse cx="32" cy="41" rx="9.5" ry="7" fill="#E8B07A"/>
+  <path d="M21.5 25.5l6.5 1.8M42.5 25.5l-6.5 1.8" stroke="#111827" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="25.5" cy="32" r="2.4" fill="#111827"/>
+  <circle cx="38.5" cy="32" r="2.4" fill="#111827"/>
+  <ellipse cx="32" cy="39" rx="3.2" ry="2.3" fill="#111827"/>
+  <path d="M29 44c2 1.6 4 1.6 6 0" fill="none" stroke="#111827" stroke-width="1.6" stroke-linecap="round"/>
 </svg>

@@ -1,4 +1,4 @@
-// LegitPitch waitlist Worker (Cloudflare).
+// Bowncr waitlist Worker (Cloudflare).
 //
 // Routes:
 //   GET  /health    — { ok, kv, resend } configuration self-check.
@@ -32,7 +32,7 @@ export const RATE_LIMITS = {
   '/event': { max: 120, windowSeconds: 3600 }
 };
 
-const DEFAULT_ORIGINS = ['https://legitpitch.app', 'https://www.legitpitch.app', 'http://localhost:8897', 'http://127.0.0.1:8897'];
+const DEFAULT_ORIGINS = ['https://bowncr.app', 'https://www.bowncr.app', 'http://localhost:8897', 'http://127.0.0.1:8897'];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const LEVELS = ['low', 'medium', 'high', 'critical'];
 
@@ -86,7 +86,7 @@ export function normalizeEmail(raw) {
 
 async function sendConfirmation(env, email) {
   if (!env.RESEND_API_KEY) return;
-  const from = env.RESEND_FROM || 'LegitPitch <hello@legitpitch.app>';
+  const from = env.RESEND_FROM || 'Bowncr <hello@bowncr.app>';
   try {
     await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -94,15 +94,15 @@ async function sendConfirmation(env, email) {
       body: JSON.stringify({
         from,
         to: [email],
-        subject: 'You\u2019re on the LegitPitch waitlist',
+        subject: 'You\u2019re on the Bowncr waitlist',
         text: [
-          'Thanks for joining the LegitPitch waitlist.',
+          'Thanks for joining the Bowncr waitlist.',
           '',
-          'LegitPitch is a Gmail extension that verifies sponsorship emails, warns about fake briefs and malware contracts, and pulls out the deal terms \u2014 all in your browser.',
+          'Bowncr is a Gmail extension that verifies sponsorship emails, warns about fake briefs and malware contracts, and pulls out the deal terms \u2014 all in your browser.',
           '',
           'We will email you once when the extension is ready and once with your founding-member link ($39/year for life, first 200 members).',
           '',
-          'Until then, the free Pitch Checker is live: https://legitpitch.app/check.html',
+          'Until then, the free Pitch Checker is live: https://bowncr.app/check.html',
           '',
           'Reply to this email to unsubscribe or ask anything.',
           '\u2014 House of Arqam Ventures LLC'

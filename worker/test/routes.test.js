@@ -19,10 +19,10 @@ const ctx = () => {
   return { tasks, waitUntil: (p) => tasks.push(p), async flush() { await Promise.all(tasks); } };
 };
 
-const ORIGIN = 'https://legitpitch.app';
+const ORIGIN = 'https://bowncr.app';
 
 function req(path, { method = 'POST', body, ip = '1.2.3.4', origin = ORIGIN, headers = {} } = {}) {
-  return new Request(`https://api.legitpitch.app${path}`, {
+  return new Request(`https://api.bowncr.app${path}`, {
     method,
     headers: { 'Content-Type': 'application/json', Origin: origin, 'CF-Connecting-IP': ip, ...headers },
     body: body === undefined ? undefined : JSON.stringify(body)
@@ -59,7 +59,7 @@ test('POST /waitlist rejects invalid email and bad JSON', async () => {
   const env = { WAITLIST: fakeKV() };
   let res = await worker.fetch(req('/waitlist', { body: { email: 'nope' } }), env, ctx());
   assert.equal(res.status, 400);
-  res = await worker.fetch(new Request('https://api.legitpitch.app/waitlist', { method: 'POST', body: '{oops' }), env, ctx());
+  res = await worker.fetch(new Request('https://api.bowncr.app/waitlist', { method: 'POST', body: '{oops' }), env, ctx());
   assert.equal(res.status, 400);
 });
 

@@ -1,8 +1,10 @@
-# LegitPitch — MVP spec
+# Bowncr — MVP spec
 
-Working brand: **LegitPitch** (legitpitch.com and legitpitch.app were unregistered
-per registry RDAP on 2026-09-20; run a USPTO/EUIPO search before buying). See
-"Name shortlist" at the end for alternatives.
+Brand: **Bowncr** — "the bear at the door of your inbox". Mascot: Bowncr the
+Bear, a chunky brown bear in a bouncer's black tee; the four verdict badges are
+his four expressions. bowncr.com and bowncr.app were unregistered per registry
+RDAP on 2026-09-20 (Google Registry / Verisign); run a USPTO/EUIPO search and
+grab the @bowncr handles before buying. See "Name decision" at the end.
 
 One line: *a Gmail extension that tells creators which sponsorship emails are
 real — and what the contract actually says — before they open the attachment.*
@@ -158,18 +160,38 @@ gets paid for.
 500 installs/week organic by day 60; 4 % free→Pro; churn < 6 %/mo; ≥ 1 public
 "it caught a fake brief" story per week.
 
-## Name shortlist (registry RDAP, 2026-09-20; re-check before buying)
+## Name decision (registry RDAP + SERP checks, 2026-09-20; re-check before buying)
 
-| Name | .com | .app | Notes |
+Chosen: **Bowncr**. .com and .app free; Google SERP for the string is empty, so
+the brand query is ours on day one and a trademark is unlikely to collide.
+Known cost: the dropped-vowel spelling leaks spoken word-of-mouth to
+bouncr.com / bouncer.com (both owned by others). Mitigation: the bear mascot is
+the memorable hook ("the bear extension"), the name is always shown on screen,
+and every listing carries the tagline. Also free and worth registering
+defensively: getbowncr.com/.app, bowncrapp.com/.app.
+
+SEO finding that drove the choice: Google Autocomplete shows creators type
+"youtube sponsorship scams", "how to know if a sponsorship is legit", "fake
+sponsorship youtube", "brand deals for small creators", "youtube sponsorship
+rate calculator" — never a product-style word. Search traffic therefore comes
+from the checker page's title/H1 carrying those phrases, not from the brand, so
+the brand can be chosen for memorability. ("youtube sponsorship rate
+calculator" is a candidate second free tool.)
+
+Rejected, with reason:
+
+| Name | .com | .app | Why not |
 | --- | --- | --- | --- |
-| **LegitPitch** | free | free | Recommended. Says the job; matches the free checker ("is this pitch legit?"); no product found using it |
-| InboxVet | free | free | Broader (not sponsorship-specific), pairs with Manila; "vet" reads slightly veterinary |
-| PitchSentry | free | free | Security connotation; slightly enterprise |
-| VettedInbox / VetMyInbox | free | free | Descriptive, long |
-| SponsorVerify | free | free | Very literal; weak brand |
-| SponsorVet | taken | free | Strong, but .com is registered |
-| BriefGuard / PitchGuard / CollabGuard | taken | free | "Guard" is crowded in security naming |
-| SponsorShield / DealShield | taken | free | Same |
+| LegitPitch (original working name) | free | free | SERP crowded by "Legitize Pitch Checker", getlegit.dev, Legitly — the "Legit-" prefix is contested |
+| SponsorBouncer / Sponsor* | free | free | SERP dominated by SponsorBlock (10M-user extension creators dislike) and SponsorBook/Radar/Flo/Trace |
+| PitchBouncer / DealBouncer | free | free | Clean and viable; runner-up to Bowncr, less distinctive |
+| PitchPatrol | taken | free | Autocomplete owned by the Fortnite "Pitch Patroller" skin |
+| Vettly | taken | taken | Live product (vettly.dev, moderation + teen-safety app) |
+| HardPass, Fishy, Sussed, Whiff, NoCap, CapCheck | taken | mostly taken | Negative-only framing; half the value is "this one is real" |
+| Velvet Rope, Deadbolt, Moat, Drawbridge, Airlock, Taster | taken | taken | Existing security/ad-tech brands |
+| BrandVet | taken | free | brandvet.net is a veterinary-products company |
+| SponsorVerify, SponsorLegit, SponsorDetect | free | free | Literal, weak brand, "Sponsor-" collision above |
+| InboxVet, PitchSentry, VettedInbox | free | free | Broad or enterprise-sounding |
 
 Avoid anything containing "deal desk" (URep, Repped, Marlo, Fluencity,
-creatordealdesk.com all use it).
+creatordealdesk.com all use it) and "Gmail"/"Google" (Chrome Web Store policy).

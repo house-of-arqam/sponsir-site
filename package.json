@@ -1,7 +1,7 @@
 {
-  "name": "legitpitch-site",
+  "name": "bowncr-site",
   "version": "0.1.0",
-  "description": "Landing page, waitlist and free browser-side Pitch Checker for LegitPitch (served from docs/ via GitHub Pages)",
+  "description": "Landing page, waitlist and free browser-side Pitch Checker for Bowncr (served from docs/ via GitHub Pages)",
   "private": true,
   "scripts": {
     "lint": "eslint docs scripts",

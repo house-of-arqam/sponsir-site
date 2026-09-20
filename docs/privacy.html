@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Privacy Policy — LegitPitch</title>
-  <meta name="description" content="How LegitPitch handles data: the Pitch Checker runs in your browser and uploads nothing; the waitlist stores only your email address.">
+  <title>Privacy Policy — Bowncr</title>
+  <meta name="description" content="How Bowncr handles data: the Pitch Checker runs in your browser and uploads nothing; the waitlist stores only your email address.">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
-  <link rel="canonical" href="https://legitpitch.app/privacy.html">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="canonical" href="https://bowncr.app/privacy.html">
   <link rel="stylesheet" href="assets/base.css">
   <link rel="stylesheet" href="assets/site.css">
   <script src="assets/theme.js"></script>
@@ -16,8 +17,8 @@
 <body>
   <nav>
     <a href="/" class="nav-logo">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="4" width="56" height="56" rx="14" fill="#0F766E"/><path d="M32 12 16 18v12c0 11 7 19 16 22 9-3 16-11 16-22V18L32 12z" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round"/><path d="M24 32l6 6 11-12" fill="none" stroke="#5EEAD4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      LegitPitch
+      <img src="icon.svg" alt="" width="28" height="28">
+      Bowncr
     </a>
     <div class="nav-links" id="nav-links">
       <a href="index.html">Home</a>
@@ -31,7 +32,7 @@
 
   <main class="doc">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 20, 2026 · LegitPitch is made by House of Arqam Ventures LLC.</p>
+    <p class="updated">Last updated: September 20, 2026 · Bowncr is made by House of Arqam Ventures LLC.</p>
 
     <h2>The short version</h2>
     <ul>
@@ -45,20 +46,20 @@
     <p>The analysis engine is a JavaScript file served from this site. When you click “Check this pitch”, it processes the text inside your browser tab and shows the result. There is no network request containing the email. You can verify this in your browser’s developer tools (Network tab) or by reading <a href="assets/checker.js">the source</a>.</p>
 
     <h2>Waitlist</h2>
-    <p>If you join the waitlist we store your email address, the page you signed up from (for example “home” or “checker”) and the time of signup, in a Cloudflare Workers KV datastore in the account of House of Arqam Ventures LLC. We use it to email you about LegitPitch’s launch and your founding-member offer. We do not sell, rent or share it. Every email we send includes a one-click unsubscribe; you can also write to <a href="mailto:hello@legitpitch.app">hello@legitpitch.app</a> and we will delete your address.</p>
+    <p>If you join the waitlist we store your email address, the page you signed up from (for example “home” or “checker”) and the time of signup, in a Cloudflare Workers KV datastore in the account of House of Arqam Ventures LLC. We use it to email you about Bowncr’s launch and your founding-member offer. We do not sell, rent or share it. Every email we send includes a one-click unsubscribe; you can also write to <a href="mailto:hello@bowncr.app">hello@bowncr.app</a> and we will delete your address.</p>
     <p>To protect the form from abuse we rate-limit requests by network address for a short period. The address is not stored with your signup.</p>
 
     <h2>Anonymous usage counter</h2>
     <p>When a check completes, the page sends a request containing only the word “check” and the resulting risk level. We use these counts to understand whether the tool is useful. Nothing in that request identifies you or the email you checked.</p>
 
     <h2>The browser extension</h2>
-    <p>The LegitPitch extension is not yet released. When it is, this policy will be updated before launch. Its design commitment is the same as the checker: analysis happens on the Gmail page in your browser, it does not use the Gmail API or Google OAuth, and it does not upload the contents of your email. Licensing (for the paid tier) exchanges only a license key and an anonymous device identifier with our licensing server.</p>
+    <p>The Bowncr extension is not yet released. When it is, this policy will be updated before launch. Its design commitment is the same as the checker: analysis happens on the Gmail page in your browser, it does not use the Gmail API or Google OAuth, and it does not upload the contents of your email. Licensing (for the paid tier) exchanges only a license key and an anonymous device identifier with our licensing server.</p>
 
     <h2>Hosting</h2>
     <p>This site is hosted on GitHub Pages and the waitlist endpoint on Cloudflare Workers. Those providers process requests to deliver the service and keep standard server logs under their own privacy policies.</p>
 
     <h2>Contact</h2>
-    <p>House of Arqam Ventures LLC · <a href="mailto:hello@legitpitch.app">hello@legitpitch.app</a></p>
+    <p>House of Arqam Ventures LLC · <a href="mailto:hello@bowncr.app">hello@bowncr.app</a></p>
   </main>
 
   <footer>
@@ -69,7 +70,7 @@
     <div class="footer-links">
       <a href="index.html">Home</a>
       <a href="check.html">Pitch Checker</a>
-      <a href="mailto:hello@legitpitch.app">Contact</a>
+      <a href="mailto:hello@bowncr.app">Contact</a>
     </div>
   </footer>
 </body>
