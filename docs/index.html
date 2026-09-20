@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>document.documentElement.className += ' js';</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.legitpitch.app; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>LegitPitch — Know which sponsorship emails are real, inside Gmail</title>
+  <meta name="description" content="LegitPitch is a Gmail extension for creators that verifies sponsor emails, warns about fake briefs and malware contracts, and pulls out the deal terms. Local-first: your inbox never leaves your browser. Join the waitlist.">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+
+  <meta property="og:title" content="LegitPitch — Know which sponsorship emails are real">
+  <meta property="og:description" content="A Gmail extension that verifies sponsors, flags fake briefs and shows you the deal terms — before you open the contract.">
+  <meta property="og:url" content="https://legitpitch.app/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LegitPitch — Know which sponsorship emails are real">
+  <meta name="twitter:description" content="A Gmail extension that verifies sponsors, flags fake briefs and shows you the deal terms.">
+  <link rel="canonical" href="https://legitpitch.app/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "LegitPitch",
+    "description": "Gmail extension for creators that verifies sponsorship emails, warns about fake briefs and extracts deal terms. Local-first.",
+    "applicationCategory": "BrowserApplication",
+    "operatingSystem": "Chrome",
+    "offers": [
+      { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Pro monthly", "price": "7", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Pro yearly", "price": "59", "priceCurrency": "USD" }
+    ],
+    "url": "https://legitpitch.app/"
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/theme.js"></script>
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="icon-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="icon-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></symbol>
+    <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+    <symbol id="icon-x-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="icon-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></symbol>
+    <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
+    <symbol id="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></symbol>
+  </svg>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="4" width="56" height="56" rx="14" fill="#0F766E"/><path d="M32 12 16 18v12c0 11 7 19 16 22 9-3 16-11 16-22V18L32 12z" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round"/><path d="M24 32l6 6 11-12" fill="none" stroke="#5EEAD4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      LegitPitch
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="check.html">Free checker</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero" id="top">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="hero-badge">For creators · Gmail extension</span>
+        <h1>Know which sponsorship emails are <span>real</span> — before you open the contract.</h1>
+        <p class="lede">LegitPitch sits inside Gmail and checks every brand pitch for you: is the sender really the brand, is that “campaign brief” actually malware, and what do the terms say? All in your browser. Your inbox never leaves your computer.</p>
+        <div class="hero-actions">
+          <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
+          <a href="check.html" class="btn btn-secondary">Check a pitch now — free</a>
+        </div>
+        <p class="hero-secondary">Founding members get Pro for <strong>$39/year, for life</strong>. First 200 only.</p>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="inbox-mock" role="img" aria-label="Preview of LegitPitch badges inside a Gmail inbox">
+          <div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-row">
+            <span class="who">Squarespace Partnerships</span>
+            <span class="subj">Q4 creator program — integration proposal</span>
+            <span class="pill pill-ok"><svg><use href="#icon-check"/></svg>Verified brand</span>
+          </div>
+          <div class="mock-row">
+            <span class="who">NordVPN Collabs</span>
+            <span class="subj">Sponsorship $4,500/video — brief attached (.zip)</span>
+            <span class="pill pill-danger"><svg><use href="#icon-alert"/></svg>Dangerous</span>
+          </div>
+          <div class="mock-row">
+            <span class="who">Maya · Wavelength</span>
+            <span class="subj">Re: rates — 3 mo exclusivity, Net 30</span>
+            <span class="pill pill-info"><svg><use href="#icon-list"/></svg>Terms extracted</span>
+          </div>
+          <div class="mock-row">
+            <span class="who">brandteam.official@gmail…</span>
+            <span class="subj">Congratulations! You have been selected…</span>
+            <span class="pill pill-warn"><svg><use href="#icon-alert"/></svg>Unverified</span>
+          </div>
+          <div class="mock-banner">
+            <strong>Lookalike domain:</strong> nordvpn-partners.co is not a NordVPN domain. The password-protected .zip is how creator accounts get stolen.
+            <small>Real brands send a PDF from their own domain. Don’t open the archive.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip reveal">
+    <div class="trust-item"><svg><use href="#icon-lock"/></svg>Local-first — nothing is uploaded, no inbox access to grant</div>
+    <div class="trust-item"><svg><use href="#icon-eye-off"/></svg>No Google OAuth, no “read all your mail” permission</div>
+    <div class="trust-item"><svg><use href="#icon-check-circle"/></svg>Free tier protects every thread, forever</div>
+  </div>
+
+  <section class="section alt" id="problem">
+    <div class="section-inner">
+      <p class="section-label">Why this exists</p>
+      <h2 class="section-title">The fake sponsorship email is now the #1 way creator channels get stolen.</h2>
+      <p class="section-lede">A “brand” emails you. The rate is great. The brief is a password-protected ZIP, or the contract needs you to “sign in with Google” to view it. One click later an infostealer has your session cookies and your channel is streaming crypto scams. It hits creators with 5k subscribers and 5M alike — and Gmail’s spam filter waves most of it through because the domain is brand new.</p>
+      <div class="grid-3">
+        <div class="card reveal">
+          <div class="card-icon"><svg><use href="#icon-file"/></svg></div>
+          <h3>The “brief” is malware</h3>
+          <p>Archives and installers dressed up as campaign briefs, game builds or press kits, sent from lookalike domains like <code>nordvpn-partners.co</code>.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg><use href="#icon-lock"/></svg></div>
+          <h3>The “contract” is a login page</h3>
+          <p>“Sign in to view the agreement” takes your Google password and 2FA in one go. Channel gone in minutes.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg><use href="#icon-list"/></svg></div>
+          <h3>The real ones bury the terms</h3>
+          <p>Perpetual usage rights, all-media whitelisting and Net 90 hide in paragraph six. Creators sign away far more than a post.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="section-inner">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">Install once. Every pitch gets checked as you read it.</h2>
+      <div class="steps">
+        <div class="step reveal">
+          <h3>Open a pitch in Gmail</h3>
+          <p>LegitPitch recognises sponsorship and collaboration emails automatically — no forwarding, no copy-paste, no new inbox.</p>
+        </div>
+        <div class="step reveal">
+          <h3>See the verdict next to the sender</h3>
+          <p><em>Verified brand</em>, <em>Unverified</em>, <em>Suspicious</em> or <em>Dangerous</em>, with the reason in one sentence. Risky attachments and links get an inline warning.</p>
+        </div>
+        <div class="step reveal">
+          <h3>Read the terms, not the paragraphs</h3>
+          <p>Rate, deliverables, deadlines, exclusivity, usage rights and payment terms pulled into a side panel — with what’s missing and what to push back on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="features">
+    <div class="section-inner">
+      <p class="section-label">Features</p>
+      <h2 class="section-title">Security first. Deal tracking second. Nothing that needs your password.</h2>
+      <div class="grid-3">
+        <div class="card reveal">
+          <div class="card-icon"><svg><use href="#icon-shield-check"/></svg></div>
+          <h3>Sponsor verification</h3>
+          <p>Matches the sending domain against the brands named in the email, catches lookalike and punycode domains, free-mail “brand managers”, and mismatched Reply-To addresses.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg><use href="#icon-alert"/></svg></div>
+          <h3>Malware &amp; phishing lure warnings</h3>
+          <p>Flags archives, executables, password-in-the-email, file-host links, URL shorteners and “sign in to view” pages — explained in plain English.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg><use href="#icon-list"/></svg></div>
+          <h3>Deal-term extraction</h3>
+          <p>Rate, deliverables, timeline, exclusivity, usage rights, payment terms. Perpetual and all-media rights get a red flag with what to counter.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg><use href="#icon-check-circle"/></svg></div>
+          <h3>Deal tracker <span class="pro-tag">Pro</span></h3>
+          <p>New → Negotiating → Contract → Delivered → Paid, set from the side panel. Every deal in one list, exportable to CSV.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg><use href="#icon-bell"/></svg></div>
+          <h3>Deliverable &amp; payment reminders <span class="pro-tag">Pro</span></h3>
+          <p>Get nudged before a deliverable is due and when an invoice passes its Net 30. Never chase a payment from memory again.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon"><svg><use href="#icon-eye-off"/></svg></div>
+          <h3>Private by architecture</h3>
+          <p>Runs on the page you already have open. No Gmail API, no OAuth, no server sees your email. Uninstall and nothing is left behind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="compare">
+    <div class="section-inner">
+      <p class="section-label">Compared to the alternatives</p>
+      <h2 class="section-title">The other tools want your inbox. We just want you to be safe in it.</h2>
+      <div class="compare-wrap">
+        <table class="compare">
+          <thead>
+            <tr><th>Approach</th><th>Works inside Gmail</th><th>Needs inbox OAuth</th><th>Scam &amp; malware detection</th><th>Deal terms</th><th>Price</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>LegitPitch</strong></td><td class="yes">Yes — extension</td><td class="yes">No</td><td class="yes">Core feature</td><td class="yes">Yes</td><td>Free · Pro $7/mo</td></tr>
+            <tr><td>Cloud “AI inbox managers”</td><td class="no">No — separate app</td><td class="no">Yes, full mailbox</td><td class="no">Some</td><td>Yes</td><td>$16–62/mo</td></tr>
+            <tr><td>Web deal CRMs</td><td class="no">No — manual entry</td><td class="yes">No</td><td class="no">No</td><td>Manual</td><td>$12–28/mo</td></tr>
+            <tr><td>Paste-in scam checkers</td><td class="no">No</td><td class="yes">No</td><td>Basic</td><td class="no">No</td><td>Free</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="pricing">
+    <div class="section-inner">
+      <p class="section-label">Pricing</p>
+      <h2 class="section-title">Protection is free. Pay only for the desk.</h2>
+      <p class="section-lede">Planned pricing for launch. Founding-member pricing is locked for waitlist members who upgrade in the first month.</p>
+      <div class="plans">
+        <div class="card plan reveal">
+          <h3>Free</h3>
+          <div class="price">$0</div>
+          <ul>
+            <li><svg><use href="#icon-check"/></svg>Sponsor verification badge on every thread</li>
+            <li><svg><use href="#icon-check"/></svg>Malware &amp; phishing lure warnings</li>
+            <li><svg><use href="#icon-check"/></svg>10 deal-term extractions / month</li>
+            <li><svg><use href="#icon-check"/></svg>Free web Pitch Checker</li>
+          </ul>
+          <a href="#waitlist" class="btn btn-secondary">Join the waitlist</a>
+        </div>
+        <div class="card plan featured reveal">
+          <h3>Founding Pro</h3>
+          <div class="price">$39<small>/year, for life</small></div>
+          <div class="was">$59/year after the first 200</div>
+          <ul>
+            <li><svg><use href="#icon-check"/></svg>Everything in Free</li>
+            <li><svg><use href="#icon-check"/></svg>Unlimited deal-term extraction</li>
+            <li><svg><use href="#icon-check"/></svg>Deal tracker &amp; CSV export</li>
+            <li><svg><use href="#icon-check"/></svg>Deliverable &amp; payment reminders</li>
+            <li><svg><use href="#icon-check"/></svg>Up to 3 devices</li>
+          </ul>
+          <a href="#waitlist" class="btn btn-primary" data-plan="founding">Reserve founding price</a>
+        </div>
+        <div class="card plan reveal">
+          <h3>Pro</h3>
+          <div class="price">$7<small>/month</small></div>
+          <div class="was">or $59/year</div>
+          <ul>
+            <li><svg><use href="#icon-check"/></svg>Everything in Founding Pro</li>
+            <li><svg><use href="#icon-check"/></svg>Cancel any time</li>
+            <li><svg><use href="#icon-check"/></svg>14-day money-back guarantee</li>
+          </ul>
+          <a href="#waitlist" class="btn btn-secondary">Join the waitlist</a>
+        </div>
+      </div>
+      <p class="pricing-note">Prices in USD. Taxes handled at checkout. Made by House of Arqam Ventures LLC, makers of Manila Mail Manager.</p>
+    </div>
+  </section>
+
+  <section class="section" id="waitlist">
+    <div class="section-inner">
+      <div class="waitlist-box reveal">
+        <h2>Be first in line — and lock the founding price.</h2>
+        <p>We’ll email you once when the extension is ready, and once more with your founding-member link. Nothing else.</p>
+        <form class="waitlist-form" data-source="home" novalidate>
+          <label class="sr-only" for="waitlist-email">Email address</label>
+          <input type="email" id="waitlist-email" name="email" placeholder="you@yourchannel.com" autocomplete="email" required>
+          <button type="submit" class="btn btn-primary">Join the waitlist</button>
+        </form>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <p class="waitlist-fine">No spam. Unsubscribe with one click. See our <a href="privacy.html">privacy policy</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="faq">
+    <div class="section-inner">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Questions creators ask us</h2>
+      <div class="faq">
+        <details>
+          <summary>Does LegitPitch read my email?</summary>
+          <p>Only on your screen. It runs as a browser extension on the Gmail tab you already have open and analyses the message you are looking at, locally. There is no server, no Gmail API access and no OAuth “read all your mail” permission to grant. Nothing is uploaded.</p>
+        </details>
+        <details>
+          <summary>How is this different from Gmail’s own spam filter?</summary>
+          <p>Gmail catches known bad senders. Sponsorship scams use freshly registered lookalike domains and clean-looking archives, so most land in the inbox. LegitPitch understands the <em>context</em> — that an email claiming to be NordVPN isn’t from a NordVPN domain, or that a “brief” shouldn’t be a password-protected ZIP.</p>
+        </details>
+        <details>
+          <summary>Will it work with a Google Workspace / custom-domain address?</summary>
+          <p>Yes. Workspace uses the same Gmail interface, so LegitPitch works on <code>you@yourbrand.com</code> exactly as on <code>@gmail.com</code>.</p>
+        </details>
+        <details>
+          <summary>What about Instagram or TikTok DMs?</summary>
+          <p>Not at launch. Paste any DM into the free <a href="check.html">Pitch Checker</a> and you get the same analysis. In-app DM support is on the roadmap.</p>
+        </details>
+        <details>
+          <summary>Can a real brand be flagged by mistake?</summary>
+          <p>Yes — that’s why the badge says <em>Unverified</em> rather than <em>Scam</em> unless the signals are unambiguous (lookalike domain plus a malware-style attachment, for example). You can mark a sender as trusted; that choice stays on your device.</p>
+        </details>
+        <details>
+          <summary>Which browsers?</summary>
+          <p>Chrome and Edge at launch (any Chromium browser that can install from the Chrome Web Store). Firefox is planned.</p>
+        </details>
+        <details>
+          <summary>Who makes this?</summary>
+          <p>House of Arqam Ventures LLC — the team behind <a href="https://manilamail.app/" target="_blank" rel="noopener">Manila Mail Manager</a>, a local-first Gmail extension used to find and cancel subscriptions. LegitPitch is built on the same privacy-first engine.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">
+      <img src="hoa-logo.png" alt="House of Arqam Ventures LLC" width="24" height="24" loading="lazy">
+      Made by House of Arqam Ventures LLC
+    </div>
+    <div class="footer-links">
+      <a href="check.html">Pitch Checker</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:hello@legitpitch.app">Contact</a>
+    </div>
+  </footer>
+
+  <script src="assets/site-config.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>

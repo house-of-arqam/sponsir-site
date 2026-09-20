@@ -1,0 +1,27 @@
+name = "legitpitch-waitlist"
+main = "src/index.js"
+compatibility_date = "2026-08-15"
+workers_dev = true
+
+# Once the zone is on Cloudflare, serve from the domain baked into
+# docs/assets/site-config.js and the pages' connect-src:
+# routes = [
+#   { pattern = "api.legitpitch.app", custom_domain = true }
+# ]
+
+# npx wrangler kv namespace create WAITLIST   -> paste the id below
+kv_namespaces = [
+  { binding = "WAITLIST", id = "TODO_KV_NAMESPACE_ID" }
+]
+
+[vars]
+ALLOWED_ORIGINS = ""                       # extra CORS origins, comma-separated
+RESEND_FROM = "LegitPitch <hello@legitpitch.app>"
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+# Secrets (npx wrangler secret put <NAME>):
+#   RESEND_API_KEY   optional; sends the waitlist confirmation email
+#   ADMIN_TOKEN      required for GET /stats

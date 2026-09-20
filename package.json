@@ -1,0 +1,21 @@
+{
+  "name": "legitpitch-site",
+  "version": "0.1.0",
+  "description": "Landing page, waitlist and free browser-side Pitch Checker for LegitPitch (served from docs/ via GitHub Pages)",
+  "private": true,
+  "scripts": {
+    "lint": "eslint docs scripts",
+    "lint:html": "html-validate \"docs/**/*.html\"",
+    "test": "node scripts/test-checker.js",
+    "check": "npm run lint && npm run lint:html && npm test && node scripts/check-links.js && node scripts/check-csp.js",
+    "serve": "python3 -m http.server 8897 --directory docs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^10.8.1",
+    "html-validate": "^11.8.0"
+  },
+  "engines": {
+    "node": "^22.22.0 || >=24.8.0"
+  }
+}

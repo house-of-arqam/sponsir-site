@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>document.documentElement.className += ' js';</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.legitpitch.app; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Is this sponsorship email legit? Free Pitch Checker — LegitPitch</title>
+  <meta name="description" content="Paste a brand deal or sponsorship email and find out in seconds if it's a scam. Checks the sender domain against the brand, spots fake briefs and malware attachments, phishing links, pay-to-play asks, and pulls out the deal terms. Free, runs in your browser, nothing is uploaded.">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <meta property="og:title" content="Is this sponsorship email legit? Free Pitch Checker">
+  <meta property="og:description" content="Paste a brand pitch. Get a verdict, the red flags and the deal terms — in your browser, nothing uploaded.">
+  <meta property="og:url" content="https://legitpitch.app/check.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://legitpitch.app/check.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "LegitPitch Pitch Checker",
+    "description": "Free tool that checks whether a sponsorship or brand-deal email sent to a creator is legitimate. Runs entirely in the browser.",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://legitpitch.app/check.html"
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/theme.js"></script>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="4" width="56" height="56" rx="14" fill="#0F766E"/><path d="M32 12 16 18v12c0 11 7 19 16 22 9-3 16-11 16-22V18L32 12z" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round"/><path d="M24 32l6 6 11-12" fill="none" stroke="#5EEAD4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      LegitPitch
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#features">Features</a>
+      <a href="check.html" class="active">Free checker</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#faq">FAQ</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <section class="section" id="checker">
+    <div class="section-inner">
+      <p class="section-label">Free Pitch Checker</p>
+      <h1 class="section-title">Is this sponsorship email legit?</h1>
+      <p class="section-lede">Paste the whole email — the <code>From:</code> line, subject, body and any links. LegitPitch checks the sender against the brand, looks for malware and phishing lures, and pulls out the deal terms. Everything runs in your browser; nothing you paste is sent anywhere.</p>
+
+      <div class="checker">
+        <div>
+          <label class="sr-only" for="checker-input">Paste the sponsorship email here</label>
+          <textarea id="checker-input" spellcheck="false" placeholder="From: Partnerships <collab@brand-example.com>
+Subject: Sponsorship opportunity
+
+Hi, we'd love to work with you..."></textarea>
+          <div class="checker-actions">
+            <button type="button" class="btn btn-primary" id="checker-run">Check this pitch</button>
+            <button type="button" class="btn btn-secondary" id="checker-clear">Clear</button>
+            <div class="samples" role="group" aria-label="Load an example">
+              <button type="button" class="chip" data-sample="scam">Example: fake brief</button>
+              <button type="button" class="chip" data-sample="phish">Example: phishing</button>
+              <button type="button" class="chip" data-sample="legit">Example: real pitch</button>
+            </div>
+          </div>
+          <p class="checker-hint">Tip: in Gmail, open the message menu (⋮) → <em>Show original</em> and paste that for sender-authentication checks too. Ctrl/⌘ + Enter runs the check.</p>
+        </div>
+        <div class="result" id="checker-result" aria-live="polite">
+          <p class="result-empty">Paste a pitch and click <strong>Check this pitch</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="signals">
+    <div class="section-inner">
+      <p class="section-label">What it looks for</p>
+      <h2 class="section-title">The patterns behind almost every fake sponsorship</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Sender doesn’t match the brand</h3>
+          <p>“NordVPN” from <code>nordvpn-partners.co</code> or a personal Gmail; Reply-To pointing somewhere else; punycode lookalikes.</p>
+        </div>
+        <div class="card">
+          <h3>The file is the payload</h3>
+          <p>Password-protected ZIP/RAR, installers, “game builds”, briefs on Mega/MediaFire/Dropbox transfer, shortened links.</p>
+        </div>
+        <div class="card">
+          <h3>Sign in to view the contract</h3>
+          <p>Credential phishing dressed up as DocuSign or a “secure portal”. Real contracts never need your Google password.</p>
+        </div>
+        <div class="card">
+          <h3>You pay first</h3>
+          <p>Shipping fees, deposits, “buy the product and we’ll refund you”, gift cards, crypto, or “let’s continue on Telegram”.</p>
+        </div>
+        <div class="card">
+          <h3>Too generic, too urgent</h3>
+          <p>“Dear creator”, no reference to your content, $8,000 for a cold email, “only 3 slots left, reply within 24 hours”.</p>
+        </div>
+        <div class="card">
+          <h3>Real, but one-sided</h3>
+          <p>Perpetual or all-media usage rights, whitelisting, IP assignment and Net 90 buried in the terms. Legit — and worth pushing back on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="waitlist">
+    <div class="section-inner">
+      <div class="waitlist-box">
+        <h2>Get this on every email, automatically.</h2>
+        <p>LegitPitch runs these checks inside Gmail as you read, plus a deal tracker and payment reminders. Join the waitlist to lock the $39/year founding price.</p>
+        <form class="waitlist-form" data-source="checker" novalidate>
+          <label class="sr-only" for="waitlist-email">Email address</label>
+          <input type="email" id="waitlist-email" name="email" placeholder="you@yourchannel.com" autocomplete="email" required>
+          <button type="submit" class="btn btn-primary">Join the waitlist</button>
+        </form>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <p class="waitlist-fine">No spam. Unsubscribe with one click. See our <a href="privacy.html">privacy policy</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">
+      <img src="hoa-logo.png" alt="House of Arqam Ventures LLC" width="24" height="24" loading="lazy">
+      Made by House of Arqam Ventures LLC
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:hello@legitpitch.app">Contact</a>
+    </div>
+  </footer>
+
+  <script src="assets/site-config.js"></script>
+  <script src="assets/site.js"></script>
+  <script src="assets/checker.js"></script>
+  <script src="assets/checker-ui.js"></script>
+</body>
+</html>
