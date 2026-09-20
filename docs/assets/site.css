@@ -60,6 +60,7 @@ nav::after {
 /* Hero */
 .hero { max-width: var(--maxw); margin: 0 auto; padding: 72px 24px 40px; }
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.hero-grid > * { min-width: 0; }
 .hero-visual { position: relative; padding: 0 168px 0 0; }
 .hero-bear { position: absolute; right: -12px; bottom: -28px; width: 212px; z-index: 2; display: block; }
 .hero-bear img { width: 100%; height: auto; display: block; filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.22)); }
@@ -88,7 +89,7 @@ nav::after {
 .mock-row { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-bottom: 1px solid var(--border); }
 .mock-row:last-child { border-bottom: 0; }
 .mock-row .who { font-weight: 600; width: 130px; flex: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.mock-row .subj { flex: 1; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mock-row .subj { flex: 1; min-width: 0; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pill {
   display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700;
   padding: 3px 8px; border-radius: 999px; white-space: nowrap;
@@ -286,6 +287,10 @@ html:not(.js) .reveal { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { transition: none; opacity: 1; transform: none; } }
 
 /* Responsive */
+@media (max-width: 1100px) {
+  .hero-visual { padding-right: 128px; }
+  .hero-bear { width: 168px; right: -8px; bottom: -20px; }
+}
 @media (max-width: 860px) {
   .hero-grid, .grid-3, .grid-2, .steps, .plans, .checker { grid-template-columns: 1fr; }
   .hero { padding-top: 44px; }
