@@ -6,18 +6,21 @@
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --paper: light-dark(#F7F9FB, #0E1218);
-  --ink: light-dark(#141A22, #EEF2F6);
-  --muted: light-dark(#55616F, #A4AFBC);
-  --soft: light-dark(#8B96A3, #7C879A);
-  --card: light-dark(#FFFFFF, #161C25);
-  --section: light-dark(#EEF2F6, #121821);
-  --border: light-dark(#DFE5EC, #26303C);
+  --paper: light-dark(#FFF7EE, #131629);        /* cream / ink */
+  --ink: light-dark(#1B1F3B, #F6E7D3);
+  --muted: light-dark(#5B5A6B, #B4AFC2);
+  --soft: light-dark(#8A8798, #837E94);
+  --card: light-dark(#FFFFFF, #1B1F3B);
+  --section: light-dark(#F6E7D3, #171A33);
+  --border: light-dark(#EADCC8, #2E3358);
 
-  --accent: light-dark(#0F766E, #2DD4BF);       /* teal: "verified" */
-  --accent-d: light-dark(#0B5F59, #5EEAD4);
-  --accent-soft: light-dark(#D9F2EF, #123B37);
-  --accent-ink: light-dark(#0B5F59, #99F6E4);
+  --accent: light-dark(#9A6B00, #E2B04A);       /* gold (darkened for contrast on cream) */
+  --accent-d: light-dark(#7A5400, #F0C56A);
+  --accent-soft: light-dark(#F6E7D3, #3A2F14);
+  --accent-ink: light-dark(#6B4A00, #F6D58A);
+  --btn: light-dark(#1B1F3B, #E2B04A);          /* primary buttons: ink on light, gold on dark */
+  --btn-d: light-dark(#0F1226, #F0C56A);
+  --btn-text: light-dark(#FFF7EE, #131629);
 
   --danger: light-dark(#B42318, #F97066);
   --danger-soft: light-dark(#FEE4E2, #4A1B18);
@@ -27,8 +30,8 @@
   --ok-soft: light-dark(#DCFAE6, #0F3D26);
   --info-soft: light-dark(#E0ECFF, #1B2A44);
 
-  --shadow: light-dark(0 10px 30px rgba(20, 30, 45, 0.08), 0 10px 30px rgba(0, 0, 0, 0.5));
-  --shadow-lg: light-dark(0 22px 55px rgba(20, 30, 45, 0.14), 0 22px 55px rgba(0, 0, 0, 0.62));
+  --shadow: light-dark(0 10px 30px rgba(27, 31, 59, 0.10), 0 10px 30px rgba(0, 0, 0, 0.5));
+  --shadow-lg: light-dark(0 22px 55px rgba(27, 31, 59, 0.16), 0 22px 55px rgba(0, 0, 0, 0.62));
   --maxw: 1040px;
 }
 

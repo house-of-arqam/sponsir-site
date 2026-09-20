@@ -1,12 +1,16 @@
-# Bowncr — MVP spec
+# Sponsir — MVP spec
 
-Brand: **Bowncr** — "the agent who reads your brand deals before you reply".
-Mascot: Bowncr the Bear, a chunky brown bear dressed like a young talent
-manager — charcoal blazer over a teal hoodie, contract and red pen in paw. He is
-the creator's agent, not a security guard (no bouncer/nightclub cues, no suit and
-tie); the four verdict badges are his four expressions. bowncr.com and bowncr.app were unregistered per registry
-RDAP on 2026-09-20 (Google Registry / Verisign); run a USPTO/EUIPO search and
-grab the @bowncr handles before buying. See "Name decision" at the end.
+Brand: **Sponsir** (sponsor + sir) — "at your service: your brand deals,
+inspected before you reply". Mascot: **Sir**, a cartoon gentleman-valet — round
+parchment face, top hat with a gold band, oversized gold monocle, mustache and
+bow tie; ink (#1B1F3B) + gold (#E2B04A) on cream. The monocle lens is the
+verdict device (green / amber / red / popped off) and the four verdict badges are
+his four expressions. Favicon = monocle + mustache + bow tie, no face. Voice: dry
+butler ("Looks legit" / "Hmm. One sec." / "I think not." / "Don't open that!").
+He is the creator's concierge, not a security guard — no bouncer/nightclub or
+enterprise-security cues. Domain: sponsir.app (sponsir.com is held by SponSir
+Ltd, HK). See "Name decision" at the end for the trademark risk that was
+knowingly accepted.
 
 One line: *a Gmail extension that tells creators which sponsorship emails are
 real — and what the contract actually says — before they open the attachment.*
@@ -164,13 +168,24 @@ gets paid for.
 
 ## Name decision (registry RDAP + SERP checks, 2026-09-20; re-check before buying)
 
-Chosen: **Bowncr**. .com and .app free; Google SERP for the string is empty, so
-the brand query is ours on day one and a trademark is unlikely to collide.
-Known cost: the dropped-vowel spelling leaks spoken word-of-mouth to
-bouncr.com / bouncer.com (both owned by others). Mitigation: the bear mascot is
-the memorable hook ("the bear extension"), the name is always shown on screen,
-and every listing carries the tagline. Also free and worth registering
-defensively: getbowncr.com/.app, bowncrapp.com/.app.
+Chosen: **Sponsir**, shipping on sponsir.app (free per RDAP 2026-09-20).
+Known, accepted risks (decision by the founder on 2026-09-20 after a USPTO
+knockout search):
+
+- **SPONSR®**, US Reg. 6841133 (Sponsr LLC, live, Class 35: matching social
+  media influencers with advertisers) is phonetically identical and in the same
+  category. A US application for SPONSIR would likely be refused over it, and a
+  demand letter is plausible once we rank. Mitigation: have a trademark attorney
+  run a full clearance before any paid launch; keep the rename path cheap (name
+  appears only in copy/config, mascot art is name-independent).
+- **SponSir Ltd** (Hong Kong, sponsir.com, "Pitch, Sell and Close
+  Sponsorships") trades under the exact name; no US filing found. Mistyped
+  visits go to them.
+- Spoken, "Sponsir" ≈ "sponsor"; the mascot and always-on wordmark carry
+  recall. Register defensively if the .app is bought: getsponsir.com/.app.
+
+Clean alternatives kept on file: **Sponsimo** (sponsimo.com/.app free, 0 USPTO
+hits) and **Brandeal** (brandeal.app free, .com hobby-owned).
 
 SEO finding that drove the choice: Google Autocomplete shows creators type
 "youtube sponsorship scams", "how to know if a sponsorship is legit", "fake
@@ -186,7 +201,11 @@ Rejected, with reason:
 | --- | --- | --- | --- |
 | LegitPitch (original working name) | free | free | SERP crowded by "Legitize Pitch Checker", getlegit.dev, Legitly — the "Legit-" prefix is contested |
 | SponsorBouncer / Sponsor* | free | free | SERP dominated by SponsorBlock (10M-user extension creators dislike) and SponsorBook/Radar/Flo/Trace |
-| PitchBouncer / DealBouncer | free | free | Clean and viable; runner-up to Bowncr, less distinctive |
+| Bowncr (second working name) | free | free | Bouncer pun dropped with the nightclub cues; spelling leaks to bouncr/bouncer |
+| PitchBouncer / DealBouncer | free | free | Clean and viable, less distinctive |
+| DealFlag / PitchFlag | parked / free | free | "Pitch" is creator-outbound; .com parked for sale |
+| Sponsly, Sponsi, SponsorLock/Loc | taken | mixed | Sponsorly, Sponsy/Sponso and SponsorBlock collisions |
+| DealDoctor, DeelDoc, Monitizr | taken | mixed | DealDoctor® registered; Deel/DealDoc live; Monetizr live |
 | PitchPatrol | taken | free | Autocomplete owned by the Fortnite "Pitch Patroller" skin |
 | Vettly | taken | taken | Live product (vettly.dev, moderation + teen-safety app) |
 | HardPass, Fishy, Sussed, Whiff, NoCap, CapCheck | taken | mostly taken | Negative-only framing; half the value is "this one is real" |

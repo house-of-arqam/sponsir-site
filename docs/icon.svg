@@ -1,20 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs><clipPath id="tile"><rect x="4" y="4" width="56" height="56" rx="14"/></clipPath></defs>
-  <rect x="4" y="4" width="56" height="56" rx="14" fill="#0F766E"/>
-  <g clip-path="url(#tile)">
-    <path d="M6 64V58c0-6 6-10 14-10h24c8 0 14 4 14 10v6z" fill="#1F2937"/>
-    <path d="M22 48h20l-6 16H28z" fill="#14B8A6"/>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="#1B1F3B"/>
+  <g transform="translate(2,2) scale(0.6)">
+    <circle cx="67" cy="30" r="15" fill="#fff" fill-opacity="0.18" stroke="#E2B04A" stroke-width="7"/>
+    <path d="M78 42 Q88 54 80 66" fill="none" stroke="#E2B04A" stroke-width="4" stroke-linecap="round"/>
+    <path d="M50 58 c-7-9-21-11-28-2 c-5 6 2 13 9 11 c8-2 13-6 19-7 c6 1 11 5 19 7 c7 2 14-5 9-11 c-7-9-21-7-28 2 z" fill="#F6E7D3"/>
+    <path d="M26 76 L47 83 L26 92 Z M74 76 L53 83 L74 92 Z" fill="#E2B04A" stroke="#1B1F3B" stroke-width="3.5" stroke-linejoin="round"/>
+    <rect x="45" y="79" width="10" height="9" rx="2.5" fill="#E2B04A" stroke="#1B1F3B" stroke-width="3"/>
   </g>
-  <circle cx="18" cy="20" r="8" fill="#6B3A1E"/>
-  <circle cx="46" cy="20" r="8" fill="#6B3A1E"/>
-  <circle cx="18" cy="20" r="4" fill="#E8B07A"/>
-  <circle cx="46" cy="20" r="4" fill="#E8B07A"/>
-  <circle cx="32" cy="33" r="18" fill="#9A5324"/>
-  <ellipse cx="32" cy="40" rx="9.5" ry="7" fill="#E8B07A"/>
-  <path d="M22 26.5h6.5" stroke="#111827" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M42.5 24.5l-6.5 1.8" stroke="#111827" stroke-width="2.2" stroke-linecap="round"/>
-  <circle cx="25.5" cy="31" r="2.4" fill="#111827"/>
-  <circle cx="38.5" cy="31" r="2.4" fill="#111827"/>
-  <ellipse cx="32" cy="38" rx="3.2" ry="2.3" fill="#111827"/>
-  <path d="M29 43c2 1.6 4 1.6 6 0" fill="none" stroke="#111827" stroke-width="1.6" stroke-linecap="round"/>
 </svg>

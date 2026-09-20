@@ -1,5 +1,5 @@
 (function () {
-  const config = window.BOWNCR_CONFIG || {};
+  const config = window.SPONSIR_CONFIG || {};
 
   // Mobile nav
   const toggle = document.getElementById('nav-toggle');
@@ -57,7 +57,7 @@
 
     if (!config.waitlistEndpoint) {
       location.href = 'mailto:' + (config.fallbackEmail || '') +
-        '?subject=' + encodeURIComponent('Bowncr waitlist') +
+        '?subject=' + encodeURIComponent('Sponsir waitlist') +
         '&body=' + encodeURIComponent('Please add ' + email + ' to the waitlist.');
       return;
     }

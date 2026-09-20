@@ -544,5 +544,5 @@
 
   var api = { analyze: analyze, BRANDS: BRANDS, version: '0.1.0' };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
-  global.BowncrChecker = api;
+  global.SponsirChecker = api;
 })(typeof window !== 'undefined' ? window : this);

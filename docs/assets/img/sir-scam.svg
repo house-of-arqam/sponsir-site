@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10 -20 150 176" role="img"><defs>
+  <g id="hat">
+    <path d="M30 46 L34 4 Q60 -4 86 4 L90 46 Z" fill="#1B1F3B" stroke="#1B1F3B" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M31.5 30 L88.5 30 L89.5 42 L30.5 42 Z" fill="#E2B04A"/>
+    <ellipse cx="60" cy="48" rx="46" ry="9" fill="#1B1F3B"/>
+    <ellipse cx="60" cy="46" rx="46" ry="9" fill="#2A2F55"/>
+    <ellipse cx="60" cy="48" rx="46" ry="9" fill="none" stroke="#1B1F3B" stroke-width="4"/>
+    <path d="M40 10 Q42 24 40 26" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <g id="face">
+    <ellipse cx="60" cy="140" rx="40" ry="6" fill="#000" opacity="0.10"/>
+    <circle cx="60" cy="88" r="44" fill="#F6E7D3" stroke="#1B1F3B" stroke-width="4"/>
+    <circle cx="34" cy="100" r="6" fill="#F4A08C" opacity="0.7"/>
+    <circle cx="86" cy="100" r="6" fill="#F4A08C" opacity="0.7"/>
+  </g>
+  <g id="bowtie">
+    <path d="M40 128 L58 134 L40 140 Z M80 128 L62 134 L80 140 Z" fill="#E2B04A" stroke="#1B1F3B" stroke-width="3.5" stroke-linejoin="round"/>
+    <rect x="55" y="129" width="10" height="10" rx="2.5" fill="#E2B04A" stroke="#1B1F3B" stroke-width="3"/>
+  </g>
+  <g id="eye-l">
+    <circle cx="44" cy="84" r="11" fill="#fff" stroke="#1B1F3B" stroke-width="3.5"/>
+    <circle cx="46" cy="86" r="5.5" fill="#1B1F3B"/><circle cx="48" cy="84" r="1.8" fill="#fff"/>
+  </g>
+  <g id="eye-r">
+    <circle cx="78" cy="84" r="11" fill="#fff" stroke="#1B1F3B" stroke-width="3.5"/>
+    <circle cx="80" cy="86" r="5.5" fill="#1B1F3B"/><circle cx="82" cy="84" r="1.8" fill="#fff"/>
+  </g>
+  <g id="monocle">
+    <circle cx="78" cy="84" r="17" fill="#fff" fill-opacity="0.25" stroke="#E2B04A" stroke-width="5.5"/>
+    <circle cx="78" cy="84" r="17" fill="none" stroke="#1B1F3B" stroke-width="1.5"/>
+    <path d="M93 93 Q104 106 96 124" fill="none" stroke="#E2B04A" stroke-width="3" stroke-linecap="round"/>
+    <path d="M70 74 q4-3 8-2" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+  </g>
+  <g id="mustache"><path d="M60 104 c-5-7-16-9-22-2 c-4 5 1 10 7 9 c6-1 10-4 15-5 c5 1 9 4 15 5 c6 1 11-4 7-9 c-6-7-17-5-22 2 z" fill="#1B1F3B"/></g>
+  <g id="brow-l"><path d="M32 68 Q44 60 56 68" fill="none" stroke="#1B1F3B" stroke-width="4.5" stroke-linecap="round"/></g>
+  <g id="brow-r"><path d="M66 66 Q78 58 90 66" fill="none" stroke="#1B1F3B" stroke-width="4.5" stroke-linecap="round"/></g>
+  <g id="smile"><path d="M46 116 Q60 128 74 116" fill="none" stroke="#1B1F3B" stroke-width="4.5" stroke-linecap="round"/></g>
+</defs>
+    <use href="#face"/>
+    <path d="M30 66 L56 76 M90 66 L64 76" stroke="#1B1F3B" stroke-width="5" stroke-linecap="round"/>
+    <use href="#eye-l"/>
+    <circle cx="78" cy="84" r="17" fill="#E23D3D" fill-opacity="0.35"/>
+    <use href="#eye-r"/><use href="#monocle"/><use href="#mustache"/>
+    <path d="M48 124 Q60 114 72 124" fill="none" stroke="#1B1F3B" stroke-width="4.5" stroke-linecap="round"/>
+    <use href="#bowtie"/><use href="#hat"/>
+    <g transform="translate(84,86) scale(0.75)">
+      <path d="M8 26 V10 q0-4 4-4 t4 4 v12 M16 22 V6 q0-4 4-4 t4 4 v16 M24 22 V8 q0-4 4-4 t4 4 v14 M32 26 V14 q0-4 4-4 t4 4 v22 q0 14-12 18 h-10 q-8 0-11-8 l-6-12 q-1-4 3-5 t5 3 l4 6" fill="#fff" stroke="#1B1F3B" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    </g></svg>

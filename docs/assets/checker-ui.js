@@ -1,6 +1,6 @@
 (function () {
-  const config = window.BOWNCR_CONFIG || {};
-  const engine = window.BowncrChecker;
+  const config = window.SPONSIR_CONFIG || {};
+  const engine = window.SponsirChecker;
   const input = document.getElementById('checker-input');
   const output = document.getElementById('checker-result');
   const runButton = document.getElementById('checker-run');
@@ -55,7 +55,7 @@ Maya`
     });
   });
 
-  const EMPTY = '<div class="result-empty"><img src="assets/img/bowncr-unverified.webp" alt="" width="150" height="212"><p>Paste a pitch and click <strong>Check this pitch</strong>.</p></div>';
+  const EMPTY = '<div class="result-empty"><img src="assets/img/sir-unverified.svg" alt="" width="150" height="176"><p>Paste a pitch and click <strong>Check this pitch</strong>.</p></div>';
 
   runButton.addEventListener('click', run);
   if (clearButton) {
@@ -97,24 +97,24 @@ Maya`
 
   const VERDICTS = {
     low: {
-      title: 'Looks legitimate so far',
+      title: 'Looks legit',
       text: 'No major red flags. Still confirm the sender on LinkedIn or the brand\u2019s site before sharing rates or opening files.',
-      bear: 'verified'
+      sir: 'verified'
     },
     medium: {
-      title: 'Proceed with caution',
+      title: 'Hmm. One moment.',
       text: 'Some signals need checking before you reply with rates or open anything attached.',
-      bear: 'unverified'
+      sir: 'unverified'
     },
     high: {
-      title: 'Likely a scam',
+      title: 'I think not — likely a scam',
       text: 'Multiple strong red flags. Do not open attachments or sign in anywhere. Verify through the brand\u2019s official website.',
-      bear: 'scam'
+      sir: 'scam'
     },
     critical: {
-      title: 'Dangerous \u2014 do not open anything',
+      title: 'Dangerous \u2014 do not open that',
       text: 'This matches the templates used to steal creator accounts. Delete it, or report it as phishing in Gmail.',
-      bear: 'dangerous'
+      sir: 'dangerous'
     }
   };
 
@@ -171,7 +171,7 @@ Maya`
     output.innerHTML = `
       <div class="level-${esc(result.level)}">
         <div class="verdict">
-          <div class="verdict-badge"><img src="assets/img/bowncr-${verdict.bear}.webp" alt=""></div>
+          <div class="verdict-badge"><img src="assets/img/sir-${verdict.sir}.svg" alt=""></div>
           <div><h3>${esc(verdict.title)}</h3><p>${esc(verdict.text)}</p></div>
         </div>
         ${sender}
@@ -188,7 +188,7 @@ Maya`
         </dl>
         <h4>What to do next</h4>
         <div class="next-steps"><ul>${nextSteps(result).map(s => `<li>${esc(s)}</li>`).join('')}</ul></div>
-        <p class="result-cta">Want this on every email, automatically, inside Gmail? <a href="index.html#waitlist">Join the Bowncr waitlist</a>.</p>
+        <p class="result-cta">Want this on every email, automatically, inside Gmail? <a href="index.html#waitlist">Join the Sponsir waitlist</a>.</p>
       </div>`;
     output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }

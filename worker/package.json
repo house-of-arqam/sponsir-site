@@ -1,8 +1,8 @@
 {
-  "name": "bowncr-waitlist-worker",
+  "name": "sponsir-waitlist-worker",
   "version": "0.1.0",
   "private": true,
-  "description": "Waitlist + anonymous checker counter for bowncr.app (Cloudflare Worker, KV, optional Resend confirmation).",
+  "description": "Waitlist + anonymous checker counter for sponsir.app (Cloudflare Worker, KV, optional Resend confirmation).",
   "type": "module",
   "scripts": {
     "test": "node --test \"test/**/*.test.js\"",
