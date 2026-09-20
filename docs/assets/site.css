@@ -1,6 +1,6 @@
 html { scroll-behavior: smooth; }
 .icon-sprite { display: none; }
-section[id] { scroll-margin-top: 84px; }
+section[id], .result { scroll-margin-top: 84px; }
 
 /* Nav */
 nav {
