@@ -161,7 +161,8 @@
 
   var PAY_TO_PLAY = [
     /\b(small|little|minor|refundable|processing|activation|registration|verification)\s+(fee|deposit|payment|charge)\b/i,
-    /\bpay (for )?(the )?(shipping|delivery|customs|product|sample|item)s?\b/i,
+    /\bpay (for )?(the |a |an )?(shipping|delivery|customs|product|sample|item)s?\b/i,
+    /\b(shipping|delivery|customs|handling)\s+(fee|cost|charge)s?\b/i,
     /\b(refund(ed)?|reimburse(d)?)\s+(after|once|when|upon)\b/i,
     /\bbuy (the )?(product|item|sample)s?\s+(first|yourself|upfront)\b/i,
     /\b(purchase|order)\s+(first|upfront|in advance)\b/i,
