@@ -62,7 +62,7 @@ nav::after {
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
 .hero-grid > * { min-width: 0; }
 .hero-visual { position: relative; padding: 0 168px 0 0; }
-.hero-bear { position: absolute; right: -12px; bottom: -28px; width: 212px; z-index: 2; display: block; }
+.hero-bear { position: absolute; right: -24px; bottom: -28px; width: 200px; z-index: 2; display: block; }
 .hero-bear img { width: 100%; height: auto; display: block; filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.22)); }
 .hero-badge {
   display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
@@ -289,7 +289,7 @@ html:not(.js) .reveal { opacity: 1; transform: none; }
 /* Responsive */
 @media (max-width: 1100px) {
   .hero-visual { padding-right: 128px; }
-  .hero-bear { width: 168px; right: -8px; bottom: -20px; }
+  .hero-bear { width: 156px; right: -16px; bottom: -20px; }
 }
 @media (max-width: 860px) {
   .hero-grid, .grid-3, .grid-2, .steps, .plans, .checker { grid-template-columns: 1fr; }
