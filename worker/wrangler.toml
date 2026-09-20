@@ -1,4 +1,4 @@
-name = "bowncr-waitlist"
+name = "sponsir-waitlist"
 main = "src/index.js"
 compatibility_date = "2026-08-15"
 workers_dev = true
@@ -6,7 +6,7 @@ workers_dev = true
 # Once the zone is on Cloudflare, serve from the domain baked into
 # docs/assets/site-config.js and the pages' connect-src:
 # routes = [
-#   { pattern = "api.bowncr.app", custom_domain = true }
+#   { pattern = "api.sponsir.app", custom_domain = true }
 # ]
 
 # npx wrangler kv namespace create WAITLIST   -> paste the id below
@@ -16,7 +16,7 @@ kv_namespaces = [
 
 [vars]
 ALLOWED_ORIGINS = ""                       # extra CORS origins, comma-separated
-RESEND_FROM = "Bowncr <hello@bowncr.app>"
+RESEND_FROM = "Sponsir <hello@sponsir.app>"
 
 [observability]
 enabled = true
