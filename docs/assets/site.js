@@ -1,5 +1,5 @@
 (function () {
-  const config = window.LP_CONFIG || {};
+  const config = window.BOWNCR_CONFIG || {};
 
   // Mobile nav
   const toggle = document.getElementById('nav-toggle');
@@ -57,7 +57,7 @@
 
     if (!config.waitlistEndpoint) {
       location.href = 'mailto:' + (config.fallbackEmail || '') +
-        '?subject=' + encodeURIComponent('LegitPitch waitlist') +
+        '?subject=' + encodeURIComponent('Bowncr waitlist') +
         '&body=' + encodeURIComponent('Please add ' + email + ' to the waitlist.');
       return;
     }

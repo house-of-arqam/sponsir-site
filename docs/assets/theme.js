@@ -3,7 +3,7 @@
 // (data-theme), which every page reads back on load.
 (function () {
   const root = document.documentElement;
-  const STORAGE_KEY = 'lp-theme';
+  const STORAGE_KEY = 'bowncr-theme';
 
   let stored = null;
   try {

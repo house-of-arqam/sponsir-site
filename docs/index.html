@@ -4,26 +4,32 @@
   <script>document.documentElement.className += ' js';</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.legitpitch.app; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.bowncr.app; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>LegitPitch — Know which sponsorship emails are real, inside Gmail</title>
-  <meta name="description" content="LegitPitch is a Gmail extension for creators that verifies sponsor emails, warns about fake briefs and malware contracts, and pulls out the deal terms. Local-first: your inbox never leaves your browser. Join the waitlist.">
+  <title>Bowncr — Know which sponsorship emails are real, inside Gmail</title>
+  <meta name="description" content="Bowncr is a Gmail extension for creators that verifies sponsor emails, warns about fake briefs and malware contracts, and pulls out the deal terms. Local-first: your inbox never leaves your browser. Join the waitlist.">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <meta property="og:title" content="LegitPitch — Know which sponsorship emails are real">
+  <meta property="og:title" content="Bowncr — Know which sponsorship emails are real">
   <meta property="og:description" content="A Gmail extension that verifies sponsors, flags fake briefs and shows you the deal terms — before you open the contract.">
-  <meta property="og:url" content="https://legitpitch.app/">
+  <meta property="og:url" content="https://bowncr.app/">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="LegitPitch — Know which sponsorship emails are real">
+  <meta property="og:image" content="https://bowncr.app/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bowncr the Bear, a bear bouncer behind a velvet rope, next to the line: Know which sponsorship emails are real.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://bowncr.app/og.png">
+  <meta name="twitter:title" content="Bowncr — Know which sponsorship emails are real">
   <meta name="twitter:description" content="A Gmail extension that verifies sponsors, flags fake briefs and shows you the deal terms.">
-  <link rel="canonical" href="https://legitpitch.app/">
+  <link rel="canonical" href="https://bowncr.app/">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "LegitPitch",
+    "name": "Bowncr",
     "description": "Gmail extension for creators that verifies sponsorship emails, warns about fake briefs and extracts deal terms. Local-first.",
     "applicationCategory": "BrowserApplication",
     "operatingSystem": "Chrome",
@@ -32,7 +38,7 @@
       { "@type": "Offer", "name": "Pro monthly", "price": "7", "priceCurrency": "USD" },
       { "@type": "Offer", "name": "Pro yearly", "price": "59", "priceCurrency": "USD" }
     ],
-    "url": "https://legitpitch.app/"
+    "url": "https://bowncr.app/"
   }
   </script>
 
@@ -57,8 +63,8 @@
 
   <nav>
     <a href="/" class="nav-logo">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="4" width="56" height="56" rx="14" fill="#0F766E"/><path d="M32 12 16 18v12c0 11 7 19 16 22 9-3 16-11 16-22V18L32 12z" fill="none" stroke="#fff" stroke-width="3.5" stroke-linejoin="round"/><path d="M24 32l6 6 11-12" fill="none" stroke="#5EEAD4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      LegitPitch
+      <img src="icon.svg" alt="" width="28" height="28">
+      Bowncr
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -79,9 +85,9 @@
   <section class="hero" id="top">
     <div class="hero-grid">
       <div class="hero-copy">
-        <span class="hero-badge">For creators · Gmail extension</span>
+        <span class="hero-badge">For creators · Gmail extension · The bear at the door of your inbox</span>
         <h1>Know which sponsorship emails are <span>real</span> — before you open the contract.</h1>
-        <p class="lede">LegitPitch sits inside Gmail and checks every brand pitch for you: is the sender really the brand, is that “campaign brief” actually malware, and what do the terms say? All in your browser. Your inbox never leaves your computer.</p>
+        <p class="lede">Bowncr sits inside Gmail and checks every brand pitch for you: is the sender really the brand, is that “campaign brief” actually malware, and what do the terms say? All in your browser. Your inbox never leaves your computer.</p>
         <div class="hero-actions">
           <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
           <a href="check.html" class="btn btn-secondary">Check a pitch now — free</a>
@@ -89,7 +95,11 @@
         <p class="hero-secondary">Founding members get Pro for <strong>$39/year, for life</strong>. First 200 only.</p>
       </div>
       <div class="hero-visual reveal">
-        <div class="inbox-mock" role="img" aria-label="Preview of LegitPitch badges inside a Gmail inbox">
+        <picture class="hero-bear">
+          <source srcset="assets/img/bowncr-hero.webp" type="image/webp">
+          <img src="assets/img/bowncr-hero.png" width="610" height="900" alt="Bowncr the Bear: a brown bear in a black bouncer tee, arms crossed behind a velvet rope" fetchpriority="high">
+        </picture>
+        <div class="inbox-mock" role="img" aria-label="Preview of Bowncr badges inside a Gmail inbox">
           <div class="mock-bar"><i></i><i></i><i></i></div>
           <div class="mock-row">
             <span class="who">Squarespace Partnerships</span>
@@ -158,7 +168,7 @@
       <div class="steps">
         <div class="step reveal">
           <h3>Open a pitch in Gmail</h3>
-          <p>LegitPitch recognises sponsorship and collaboration emails automatically — no forwarding, no copy-paste, no new inbox.</p>
+          <p>Bowncr recognises sponsorship and collaboration emails automatically — no forwarding, no copy-paste, no new inbox.</p>
         </div>
         <div class="step reveal">
           <h3>See the verdict next to the sender</h3>
@@ -221,7 +231,7 @@
             <tr><th>Approach</th><th>Works inside Gmail</th><th>Needs inbox OAuth</th><th>Scam &amp; malware detection</th><th>Deal terms</th><th>Price</th></tr>
           </thead>
           <tbody>
-            <tr><td><strong>LegitPitch</strong></td><td class="yes">Yes — extension</td><td class="yes">No</td><td class="yes">Core feature</td><td class="yes">Yes</td><td>Free · Pro $7/mo</td></tr>
+            <tr><td><strong>Bowncr</strong></td><td class="yes">Yes — extension</td><td class="yes">No</td><td class="yes">Core feature</td><td class="yes">Yes</td><td>Free · Pro $7/mo</td></tr>
             <tr><td>Cloud “AI inbox managers”</td><td class="no">No — separate app</td><td class="no">Yes, full mailbox</td><td class="no">Some</td><td>Yes</td><td>$16–62/mo</td></tr>
             <tr><td>Web deal CRMs</td><td class="no">No — manual entry</td><td class="yes">No</td><td class="no">No</td><td>Manual</td><td>$12–28/mo</td></tr>
             <tr><td>Paste-in scam checkers</td><td class="no">No</td><td class="yes">No</td><td>Basic</td><td class="no">No</td><td>Free</td></tr>
@@ -299,16 +309,16 @@
       <h2 class="section-title">Questions creators ask us</h2>
       <div class="faq">
         <details>
-          <summary>Does LegitPitch read my email?</summary>
+          <summary>Does Bowncr read my email?</summary>
           <p>Only on your screen. It runs as a browser extension on the Gmail tab you already have open and analyses the message you are looking at, locally. There is no server, no Gmail API access and no OAuth “read all your mail” permission to grant. Nothing is uploaded.</p>
         </details>
         <details>
           <summary>How is this different from Gmail’s own spam filter?</summary>
-          <p>Gmail catches known bad senders. Sponsorship scams use freshly registered lookalike domains and clean-looking archives, so most land in the inbox. LegitPitch understands the <em>context</em> — that an email claiming to be NordVPN isn’t from a NordVPN domain, or that a “brief” shouldn’t be a password-protected ZIP.</p>
+          <p>Gmail catches known bad senders. Sponsorship scams use freshly registered lookalike domains and clean-looking archives, so most land in the inbox. Bowncr understands the <em>context</em> — that an email claiming to be NordVPN isn’t from a NordVPN domain, or that a “brief” shouldn’t be a password-protected ZIP.</p>
         </details>
         <details>
           <summary>Will it work with a Google Workspace / custom-domain address?</summary>
-          <p>Yes. Workspace uses the same Gmail interface, so LegitPitch works on <code>you@yourbrand.com</code> exactly as on <code>@gmail.com</code>.</p>
+          <p>Yes. Workspace uses the same Gmail interface, so Bowncr works on <code>you@yourbrand.com</code> exactly as on <code>@gmail.com</code>.</p>
         </details>
         <details>
           <summary>What about Instagram or TikTok DMs?</summary>
@@ -324,7 +334,7 @@
         </details>
         <details>
           <summary>Who makes this?</summary>
-          <p>House of Arqam Ventures LLC — the team behind <a href="https://manilamail.app/" target="_blank" rel="noopener">Manila Mail Manager</a>, a local-first Gmail extension used to find and cancel subscriptions. LegitPitch is built on the same privacy-first engine.</p>
+          <p>House of Arqam Ventures LLC — the team behind <a href="https://manilamail.app/" target="_blank" rel="noopener">Manila Mail Manager</a>, a local-first Gmail extension used to find and cancel subscriptions. Bowncr is built on the same privacy-first engine.</p>
         </details>
       </div>
     </div>
@@ -333,12 +343,12 @@
   <footer>
     <div class="footer-left">
       <img src="hoa-logo.png" alt="House of Arqam Ventures LLC" width="24" height="24" loading="lazy">
-      Made by House of Arqam Ventures LLC
+      Bowncr — the bear at the door of your inbox. Made by House of Arqam Ventures LLC
     </div>
     <div class="footer-links">
       <a href="check.html">Pitch Checker</a>
       <a href="privacy.html">Privacy</a>
-      <a href="mailto:hello@legitpitch.app">Contact</a>
+      <a href="mailto:hello@bowncr.app">Contact</a>
     </div>
   </footer>
 
