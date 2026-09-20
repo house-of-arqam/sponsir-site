@@ -1,12 +1,12 @@
 # Sponsir — MVP spec
 
 Brand: **Sponsir** (sponsor + sir) — "at your service: your brand deals,
-inspected before you reply". Mascot: **Sir**, a cartoon gentleman-valet — round
-parchment face, top hat with a gold band, oversized gold monocle, mustache and
-bow tie; ink (#1B1F3B) + gold (#E2B04A) on cream. The monocle lens is the
-verdict device (green / amber / red / popped off) and the four verdict badges are
-his four expressions. Favicon = monocle + mustache + bow tie, no face. Voice: dry
-butler ("Looks legit" / "Hmm. One sec." / "I think not." / "Don't open that!").
+inspected before you reply". Mascot: **Sir**, a flat, geometric gentleman-valet — round
+parchment face, top hat with a gold band, thin gold monocle ring, mustache and
+bow tie; ink (#1B1F3B) + gold (#E2B04A) on cream; flat fills, no outlines, no
+blush or shading. The monocle ring is the verdict device (green / amber / red /
+popped off) and the four verdict badges are his four expressions. Favicon =
+monocle + mustache + bow tie, no face. Voice: dry butler ("Looks legit" / "Hmm. One sec." / "I think not." / "Don't open that!").
 He is the creator's concierge, not a security guard — no bouncer/nightclub or
 enterprise-security cues. Domain: sponsir.app (sponsir.com is held by SponSir
 Ltd, HK). See "Name decision" at the end for the trademark risk that was
