@@ -14,8 +14,8 @@
   --section: light-dark(#F6E7D3, #171A33);
   --border: light-dark(#EADCC8, #2E3358);
 
-  --accent: light-dark(#9A6B00, #E2B04A);       /* gold (darkened for contrast on cream) */
-  --accent-d: light-dark(#7A5400, #F0C56A);
+  --accent: light-dark(#7F5700, #E2B04A);       /* gold (darkened for contrast on cream) */
+  --accent-d: light-dark(#6B4A00, #F0C56A);
   --accent-soft: light-dark(#F6E7D3, #3A2F14);
   --accent-ink: light-dark(#6B4A00, #F6D58A);
   --btn: light-dark(#1B1F3B, #E2B04A);          /* primary buttons: ink on light, gold on dark */
