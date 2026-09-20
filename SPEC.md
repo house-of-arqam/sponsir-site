@@ -1,8 +1,10 @@
 # Bowncr — MVP spec
 
-Brand: **Bowncr** — "the bear at the door of your inbox". Mascot: Bowncr the
-Bear, a chunky brown bear in a bouncer's black tee; the four verdict badges are
-his four expressions. bowncr.com and bowncr.app were unregistered per registry
+Brand: **Bowncr** — "the agent who reads your brand deals before you reply".
+Mascot: Bowncr the Bear, a chunky brown bear dressed like a young talent
+manager — charcoal blazer over a teal hoodie, contract and red pen in paw. He is
+the creator's agent, not a security guard (no bouncer/nightclub cues, no suit and
+tie); the four verdict badges are his four expressions. bowncr.com and bowncr.app were unregistered per registry
 RDAP on 2026-09-20 (Google Registry / Verisign); run a USPTO/EUIPO search and
 grab the @bowncr handles before buying. See "Name decision" at the end.
 
