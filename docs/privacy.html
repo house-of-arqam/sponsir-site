@@ -3,75 +3,63 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Privacy Policy — Sponsir</title>
-  <meta name="description" content="How Sponsir handles data: the Pitch Checker runs in your browser and uploads nothing; the waitlist stores only your email address.">
-  <link rel="icon" type="image/svg+xml" href="icon.svg">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="canonical" href="https://sponsir.app/privacy.html">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="assets/base.css">
-  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/doc-page.css">
   <script src="assets/theme.js"></script>
 </head>
 <body>
-  <nav>
-    <a href="/" class="nav-logo">
-      <img src="icon.svg" alt="" width="28" height="28">
-      Sponsir
-    </a>
-    <div class="nav-links" id="nav-links">
-      <a href="index.html">Home</a>
-      <a href="check.html">Free checker</a>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-    </div>
-  </nav>
-
-  <main class="doc">
+  <div class="container">
+    <a href="/" class="back">&larr; Back to Sponsir</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 20, 2026 · Sponsir is made by House of Arqam Ventures LLC.</p>
+    <p class="updated">Last updated: September 19, 2026</p>
 
-    <h2>The short version</h2>
+    <p>Sponsir ("the extension") is made by House of Arqam Ventures LLC ("we"). This policy describes what the extension and this website do with data. The short version: the extension and the free Pitch Checker work locally in your browser, we do not run analytics or tracking, and the only data that leaves your browser is what is needed to sell and verify a license, your email address if you join the waitlist, and an anonymous verdict-level count when you use the Pitch Checker.</p>
+
+    <h2>Data the extension processes</h2>
+    <p>The extension runs only on <code>mail.google.com</code>. When you open a message, it reads what Gmail has already rendered on the page — the sender name and address, Reply-To, subject, visible body text, links, attachment names and Gmail's "signed-by" / "mailed-by" indicators — and analyses it inside your browser tab to show a verdict and extract deal terms. It does not use the Gmail API or Google sign-in, does not read messages you have not opened, and never sends message content to us or to any third party.</p>
+
+    <h2>Data stored on your device</h2>
     <ul>
-      <li>The <strong>Pitch Checker</strong> on this site runs entirely in your browser. The text you paste is never sent to us or to anyone else.</li>
-      <li>The <strong>waitlist</strong> stores your email address and the page you signed up from. That is all.</li>
-      <li>We keep one anonymous counter of how many checks were run and their risk level (low / medium / high / critical). No content, no IP address, no cookies.</li>
-      <li>This site sets no cookies and loads no third-party scripts, fonts or analytics.</li>
+      <li>Your settings and the extension's working data, in the browser's extension storage.</li>
+      <li>Deals you choose to track (brand, sender, subject, rate, deliverables, deadline, stage, reminder date, notes and a link to the Gmail thread), stored locally in the extension. Nothing about a deal is uploaded.</li>
+      <li>A count of how many messages had their terms extracted this month, on the free plan.</li>
+      <li>A random installation identifier, used to count your license's devices.</li>
+      <li>Your license key and a short-lived entitlement token, if you have a trial or Pro license. The license key is also saved to your browser's sync storage so it follows you to your other signed-in browsers.</li>
+    </ul>
+    <p>Uninstalling the extension removes all of this.</p>
+
+    <h2>Data sent to our licensing service</h2>
+    <p>When you start a trial, buy Pro, or activate a license, the extension contacts our licensing service (a Cloudflare Worker at <code>license.sponsir.app</code>). It sends only what is needed for that action: the random installation identifier, an anonymous visitor identifier (for trials), the plan you chose, and your license key. The service stores your license status and the list of installation identifiers using it. It never receives page content or browsing activity.</p>
+
+    <h2>Payments</h2>
+    <p>Purchases are processed by <a href="https://www.paddle.com" rel="noopener">Paddle</a>, our merchant of record. Paddle collects your payment details and billing address, handles taxes and invoices, and tells us when a purchase completes so we can issue your license key. We never see your card number. Paddle's handling of your data is described in <a href="https://www.paddle.com/legal/privacy" rel="noopener">Paddle's privacy policy</a>.</p>
+
+    <h2>Email</h2>
+    <p>After a purchase we email your license key to the address you gave Paddle, via <a href="https://resend.com" rel="noopener">Resend</a>. We keep your email address alongside your license record so we can help you recover a key. We do not send marketing email to buyers.</p>
+
+    <h2>This website</h2>
+    <p>This site is static and sets no cookies. It uses no analytics or advertising trackers.</p>
+    <ul>
+      <li><strong>Pitch Checker.</strong> Text you paste into the free checker is analysed in your browser and is never uploaded. After a check, the page sends a single anonymous event to our Worker (the verdict level — low, medium, high or critical — and nothing else) so we can count how often the checker is used.</li>
+      <li><strong>Waitlist.</strong> If you join the waitlist we store your email address and the page you signed up from, and send one confirmation email via <a href="https://resend.com" rel="noopener">Resend</a>. We email waitlist members only about the launch; reply to any message to be removed.</li>
+      <li><strong>Checkout, license key and device pages.</strong> These call our licensing service as described above. The checkout page loads Paddle's checkout script; no other third-party code runs on this site.</li>
     </ul>
 
-    <h2>Pitch Checker</h2>
-    <p>The analysis engine is a JavaScript file served from this site. When you click “Check this pitch”, it processes the text inside your browser tab and shows the result. There is no network request containing the email. You can verify this in your browser’s developer tools (Network tab) or by reading <a href="assets/checker.js">the source</a>.</p>
+    <h2>Data retention and deletion</h2>
+    <p>License records are kept while your license is active and for a reasonable period afterwards for refund and fraud handling. Waitlist entries are deleted after launch. Email <a href="mailto:hello@sponsir.app">hello@sponsir.app</a> to have your license record, waitlist entry or email address deleted.</p>
 
-    <h2>Waitlist</h2>
-    <p>If you join the waitlist we store your email address, the page you signed up from (for example “home” or “checker”) and the time of signup, in a Cloudflare Workers KV datastore in the account of House of Arqam Ventures LLC. We use it to email you about Sponsir’s launch and your founding-member offer. We do not sell, rent or share it. Every email we send includes a one-click unsubscribe; you can also write to <a href="mailto:hello@sponsir.app">hello@sponsir.app</a> and we will delete your address.</p>
-    <p>To protect the form from abuse we rate-limit requests by network address for a short period. The address is not stored with your signup.</p>
+    <h2>Children</h2>
+    <p>The extension is not directed at children under 13 and we do not knowingly collect their data.</p>
 
-    <h2>Anonymous usage counter</h2>
-    <p>When a check completes, the page sends a request containing only the word “check” and the resulting risk level. We use these counts to understand whether the tool is useful. Nothing in that request identifies you or the email you checked.</p>
-
-    <h2>The browser extension</h2>
-    <p>The Sponsir extension is not yet released. When it is, this policy will be updated before launch. Its design commitment is the same as the checker: analysis happens on the Gmail page in your browser, it does not use the Gmail API or Google OAuth, and it does not upload the contents of your email. Licensing (for the paid tier) exchanges only a license key and an anonymous device identifier with our licensing server.</p>
-
-    <h2>Hosting</h2>
-    <p>This site is hosted on GitHub Pages and the waitlist endpoint on Cloudflare Workers. Those providers process requests to deliver the service and keep standard server logs under their own privacy policies.</p>
+    <h2>Changes</h2>
+    <p>We will update this page when the policy changes and adjust the date above.</p>
 
     <h2>Contact</h2>
-    <p>House of Arqam Ventures LLC · <a href="mailto:hello@sponsir.app">hello@sponsir.app</a></p>
-  </main>
-
-  <footer>
-    <div class="footer-left">
-      <img src="hoa-logo.png" alt="House of Arqam Ventures LLC" width="24" height="24" loading="lazy">
-      Made by House of Arqam Ventures LLC
-    </div>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="check.html">Pitch Checker</a>
-      <a href="mailto:hello@sponsir.app">Contact</a>
-    </div>
-  </footer>
+    <p><a href="mailto:hello@sponsir.app">hello@sponsir.app</a></p>
+  </div>
 </body>
 </html>

@@ -13,6 +13,7 @@
   --card: light-dark(#FFFFFF, #1B1F3B);
   --section: light-dark(#F6E7D3, #171A33);
   --border: light-dark(#EADCC8, #2E3358);
+  --kraft: var(--border);                       /* card border on the checkout/key/device pages */
 
   --accent: light-dark(#7F5700, #E2B04A);       /* gold (darkened for contrast on cream) */
   --accent-d: light-dark(#6B4A00, #F0C56A);
@@ -39,6 +40,8 @@
 :root[data-theme='dark'] { color-scheme: dark; }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+a { color: var(--accent); }
 
 body {
   font-family: var(--font-sans);
