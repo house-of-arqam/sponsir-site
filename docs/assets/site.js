@@ -22,21 +22,6 @@
     }));
   }
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        observer.unobserve(entry.target);
-        entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => observer.observe(el));
-  } else {
-    reveals.forEach(el => el.classList.add('visible'));
-  }
-
   // Pricing: monthly / yearly toggle
   const monthlyBtn = document.getElementById('billing-monthly');
   const yearlyBtn = document.getElementById('billing-yearly');

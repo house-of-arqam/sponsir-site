@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://license.sponsir.app; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://license.sponsir.app; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Sponsir — Know which sponsorship emails are real, inside Gmail</title>
   <meta name="description" content="Sponsir is a Gmail extension for creators that verifies sponsor emails, warns about fake briefs and malware contracts, and pulls out the deal terms. Local-first: your inbox never leaves your browser. Join the waitlist.">
@@ -17,7 +17,7 @@
   <meta property="og:image" content="https://sponsir.app/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Sir, the Sponsir mascot — a flat-style gentleman in a top hat with a gold monocle, mustache and bow tie — next to the line: Know which sponsorship emails are real.">
+  <meta property="og:image:alt" content="The Sponsir mark — a gold monocle, mustache and bow tie — next to the line: Know which sponsorship emails are real.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://sponsir.app/og.png">
   <meta name="twitter:title" content="Sponsir — Know which sponsorship emails are real">
@@ -41,300 +41,244 @@
   }
   </script>
 
+  <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/base.css">
   <link rel="stylesheet" href="assets/site.css">
   <script src="assets/theme.js"></script>
 </head>
 <body>
-  <svg class="icon-sprite" aria-hidden="true">
-    <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
-    <symbol id="icon-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
-    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></symbol>
-    <symbol id="icon-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></symbol>
-    <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
-    <symbol id="icon-x-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></symbol>
-    <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
-    <symbol id="icon-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></symbol>
-    <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></symbol>
-    <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
-    <symbol id="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></symbol>
-  </svg>
-
-  <nav>
-    <a href="/" class="nav-logo">
-      <img src="icon.svg" alt="" width="28" height="28">
-      Sponsir
-    </a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <div class="nav-links" id="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#features">Features</a>
-      <a href="check.html">Free checker</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-    </div>
-  </nav>
-
-  <section class="hero" id="top">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="hero-badge">For creators · Gmail extension · Your brand deals, inspected first</span>
-        <h1>Know which sponsorship emails are <span>real</span> — before you open the contract.</h1>
-        <p class="lede">Sponsir sits inside Gmail and checks every brand pitch for you: is the sender really the brand, is that “campaign brief” actually malware, and what do the terms say? All in your browser. Your inbox never leaves your computer.</p>
-        <div class="hero-actions">
-          <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
-          <a href="check.html" class="btn btn-secondary">Check a pitch now — free</a>
+  <header class="dark" id="top">
+    <div class="wrap">
+      <nav>
+        <a href="/" class="nav-logo">
+          <img src="icon.svg" alt="" width="28" height="28">
+          Sponsir
+        </a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="check.html">Pitch Checker</a>
+          <a href="#faq">FAQ</a>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          </button>
+          <a href="#waitlist" class="btn btn-gold nav-cta">Join the waitlist</a>
         </div>
-        <p class="hero-secondary">Free forever for protection. Pro is <strong>$7/month or $59/year</strong>, with a 7-day free trial.</p>
+      </nav>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="kicker">A Gmail extension for creators</p>
+          <h1 class="serif">Know which sponsorship emails are <em>real.</em></h1>
+          <p class="lede">Sir inspects every brand pitch before you reply: is the sender really the brand, is that “brief” malware, and what do the terms actually say? All of it on your computer — your inbox never leaves your browser.</p>
+          <div class="hero-actions">
+            <a href="#waitlist" class="btn btn-gold">Join the waitlist</a>
+            <a href="check.html" class="link-arrow">Check a pitch now, free</a>
+          </div>
+          <p class="hero-fine">Free for protection · Pro is $7/month or $59/year · 7-day trial, no card</p>
+        </div>
+        <div class="hero-visual">
+          <div class="verdict-card" role="img" aria-label="Sponsir verdict card inside Gmail: Dangerous — this isn’t NordVPN, the domain is a lookalike; do not open NordVPN_Brief_Q4.zip">
+            <div class="verdict-card-head">
+              <img src="assets/img/sir-dangerous.svg" width="34" height="40" alt="">
+              <div>
+                <b class="serif">I think not.</b>
+                <small>This isn’t NordVPN. The domain is a lookalike.</small>
+              </div>
+              <span class="verdict-pill">Dangerous</span>
+            </div>
+            <div class="verdict-strip">Do not open <code>NordVPN_Brief_Q4.zip</code></div>
+            <div class="verdict-chips">
+              <span class="chip-flag">Lookalike domain</span>
+              <span class="chip-flag">Password-protected .zip</span>
+              <span class="chip-flag amber">Reply-To differs</span>
+              <span class="chip-flag amber">Domain is 11 days old</span>
+            </div>
+          </div>
+          <img class="hero-mark" src="assets/img/sir-hero.svg" width="120" height="140" alt="The Sponsir mark: a gold monocle, mustache and bow tie" fetchpriority="high">
+        </div>
+      </section>
+
+      <ul class="proof">
+        <li>Runs entirely in your browser</li>
+        <li>No Gmail API · No Google sign-in</li>
+        <li>Nothing uploaded, ever</li>
+        <li>Free forever for protection</li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="wrap split" id="problem">
+    <div>
+      <p class="num">01 — The problem</p>
+      <h2 class="serif">The fake sponsorship email is now the #1 way creator channels get stolen.</h2>
+    </div>
+    <div class="prose">
+      <p class="dropcap">A “brand” emails you. The rate is great. The brief is a password-protected ZIP, or the contract needs you to “sign in with Google” to view it. One click later an infostealer has your session cookies and your channel is streaming crypto scams.</p>
+      <p>It hits creators with 5k subscribers and 5M alike, and Gmail’s spam filter waves most of it through because the domain is brand new. Sponsir reads the message you already have open, on your computer, and tells you in one sentence what it is.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="how">
+    <p class="num">02 — What Sir does</p>
+    <h2 class="serif h2-lead">Install once. Every pitch is inspected as you read it.</h2>
+    <div class="ledger" id="features">
+      <div class="item">
+        <div class="n serif">i.</div>
+        <div>
+          <h3 class="serif">Verifies the sender is the brand.</h3>
+          <p>Domains are matched against the brands named in the email. Lookalikes, punycode, free-mail “brand managers” and mismatched Reply-To addresses are called out on the thread.</p>
+        </div>
+        <div class="vis" role="img" aria-label="Gmail inbox with Sponsir badges: Verified brand, Dangerous, Terms extracted, Unverified">
+          <div class="row"><div><b>Squarespace Partnerships</b><span class="s">Q4 creator program — integration proposal</span></div><span class="tag ok">Verified brand</span></div>
+          <div class="row"><div><b>NordVPN Collabs</b><span class="s">Sponsorship $4,500/video — brief attached (.zip)</span></div><span class="tag bad">Dangerous</span></div>
+          <div class="row"><div><b>Maya · Wavelength</b><span class="s">Re: rates — 3 mo exclusivity, Net 30</span></div><span class="tag inf">Terms extracted</span></div>
+          <div class="row"><div><b>brandteam.official@gmail.com</b><span class="s">Congratulations! You have been selected…</span></div><span class="tag amb">Unverified</span></div>
+        </div>
       </div>
-      <div class="hero-visual reveal">
-        <img class="hero-sir" src="assets/img/sir-hero.svg" width="150" height="176" alt="Sir, the Sponsir mascot: a flat-style gentleman with a top hat, gold monocle, mustache and bow tie, smiling" fetchpriority="high">
-        <div class="inbox-mock" role="img" aria-label="Preview of Sponsir badges inside a Gmail inbox">
-          <div class="mock-bar"><i></i><i></i><i></i></div>
-          <div class="mock-row">
-            <span class="who">Squarespace Partnerships</span>
-            <span class="subj">Q4 creator program — integration proposal</span>
-            <span class="pill pill-ok"><svg><use href="#icon-check"/></svg>Verified brand</span>
+      <div class="item">
+        <div class="n serif">ii.</div>
+        <div>
+          <h3 class="serif">Reads the terms so you don’t have to.</h3>
+          <p>Rate, deliverables, deadline, exclusivity, usage rights and payment terms pulled into a deal sheet, with what’s missing and what to push back on. Ten a month free, unlimited on Pro.</p>
+        </div>
+        <div class="vis" role="img" aria-label="Deal sheet: $2,800 per video, one 60-second integration, due Nov 14, 3 months exclusivity, perpetual all-media usage rights flagged, Net 30">
+          <div class="sheet">
+            <div>Rate<b>$2,800 / video</b></div>
+            <div>Deliverables<b>1 × 60s integration</b></div>
+            <div>Deadline<b>Nov 14</b></div>
+            <div>Exclusivity<b>3 months · VPN</b></div>
+            <div class="flag">Usage rights<b>Perpetual, all media</b></div>
+            <div>Payment<b>Net 30</b></div>
           </div>
-          <div class="mock-row">
-            <span class="who">NordVPN Collabs</span>
-            <span class="subj">Sponsorship $4,500/video — brief attached (.zip)</span>
-            <span class="pill pill-danger"><svg><use href="#icon-alert"/></svg>Dangerous</span>
-          </div>
-          <div class="mock-row">
-            <span class="who">Maya · Wavelength</span>
-            <span class="subj">Re: rates — 3 mo exclusivity, Net 30</span>
-            <span class="pill pill-info"><svg><use href="#icon-list"/></svg>Terms extracted</span>
-          </div>
-          <div class="mock-row">
-            <span class="who">brandteam.official@gmail…</span>
-            <span class="subj">Congratulations! You have been selected…</span>
-            <span class="pill pill-warn"><svg><use href="#icon-alert"/></svg>Unverified</span>
-          </div>
-          <div class="mock-banner">
-            <strong>Lookalike domain:</strong> nordvpn-partners.co is not a NordVPN domain. The password-protected .zip is how creator accounts get stolen.
-            <small>Real brands send a PDF from their own domain. Don’t open the archive.</small>
+          <p class="vis-note">Push back: perpetual usage is worth 2–3× the rate. Ask for 12 months, paid channels only.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="n serif">iii.</div>
+        <div>
+          <h3 class="serif">Keeps every deal on one desk. <span class="pro-tag">Pro</span></h3>
+          <p>Save a pitch to the tracker from the message. Move it from negotiating to paid, get nudged before deliverables are due and when an invoice passes Net 30. Export to CSV any time.</p>
+        </div>
+        <div class="vis" role="img" aria-label="Deal tracker with Negotiating, Delivered and Paid columns">
+          <div class="kanban">
+            <div><h5>Negotiating</h5><div class="c"><b>Wavelength</b><span>$2,800 · rights</span></div><div class="c"><b>Athletic Greens</b><span>$5,200 · 2 videos</span></div></div>
+            <div><h5>Delivered</h5><div class="c"><b>Notion</b><span>Due Oct 28 · invoice sent</span></div></div>
+            <div><h5>Paid</h5><div class="c"><b>Skillshare</b><span>$1,900 · Sep 30</span></div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="trust-strip reveal">
-    <div class="trust-item"><svg><use href="#icon-lock"/></svg>Local-first — nothing is uploaded, no inbox access to grant</div>
-    <div class="trust-item"><svg><use href="#icon-eye-off"/></svg>No Google OAuth, no “read all your mail” permission</div>
-    <div class="trust-item"><svg><use href="#icon-check-circle"/></svg>Free tier protects every thread, forever</div>
-  </div>
-
-  <section class="section alt" id="problem">
-    <div class="section-inner">
-      <p class="section-label">Why this exists</p>
-      <h2 class="section-title">The fake sponsorship email is now the #1 way creator channels get stolen.</h2>
-      <p class="section-lede">A “brand” emails you. The rate is great. The brief is a password-protected ZIP, or the contract needs you to “sign in with Google” to view it. One click later an infostealer has your session cookies and your channel is streaming crypto scams. It hits creators with 5k subscribers and 5M alike — and Gmail’s spam filter waves most of it through because the domain is brand new.</p>
-      <div class="grid-3">
-        <div class="card reveal">
-          <div class="card-icon"><svg><use href="#icon-file"/></svg></div>
-          <h3>The “brief” is malware</h3>
-          <p>Archives and installers dressed up as campaign briefs, game builds or press kits, sent from lookalike domains like <code>nordvpn-partners.co</code>.</p>
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="pricing-top">
+        <div>
+          <p class="num">03 — Pricing</p>
+          <h2 class="serif">Protection is free.<br>Pay only for the desk.</h2>
         </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg><use href="#icon-lock"/></svg></div>
-          <h3>The “contract” is a login page</h3>
-          <p>“Sign in to view the agreement” takes your Google password and 2FA in one go. Channel gone in minutes.</p>
+        <div class="billing-toggle" role="group" aria-label="Billing period">
+          <button class="billing-option" id="billing-monthly" type="button" aria-pressed="false">Monthly</button>
+          <button class="billing-option" id="billing-yearly" type="button" aria-pressed="true">Yearly <span class="billing-save">Save 30%</span></button>
         </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg><use href="#icon-list"/></svg></div>
-          <h3>The real ones bury the terms</h3>
-          <p>Perpetual usage rights, all-media whitelisting and Net 90 hide in paragraph six. Creators sign away far more than a post.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="how">
-    <div class="section-inner">
-      <p class="section-label">How it works</p>
-      <h2 class="section-title">Install once. Every pitch gets checked as you read it.</h2>
-      <div class="steps">
-        <div class="step reveal">
-          <h3>Open a pitch in Gmail</h3>
-          <p>Sponsir recognises sponsorship and collaboration emails automatically — no forwarding, no copy-paste, no new inbox.</p>
-        </div>
-        <div class="step reveal">
-          <h3>See the verdict next to the sender</h3>
-          <p><em>Verified brand</em>, <em>Unverified</em>, <em>Suspicious</em> or <em>Dangerous</em>, with the reason in one sentence. Risky attachments and links get an inline warning.</p>
-        </div>
-        <div class="step reveal">
-          <h3>Read the terms, not the paragraphs</h3>
-          <p>Rate, deliverables, deadlines, exclusivity, usage rights and payment terms pulled into a side panel — with what’s missing and what to push back on.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt" id="features">
-    <div class="section-inner">
-      <p class="section-label">Features</p>
-      <h2 class="section-title">Security first. Deal tracking second. Nothing that needs your password.</h2>
-      <div class="grid-3">
-        <div class="card reveal">
-          <div class="card-icon"><svg><use href="#icon-shield-check"/></svg></div>
-          <h3>Sponsor verification</h3>
-          <p>Matches the sending domain against the brands named in the email, catches lookalike and punycode domains, free-mail “brand managers”, and mismatched Reply-To addresses.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg><use href="#icon-alert"/></svg></div>
-          <h3>Malware &amp; phishing lure warnings</h3>
-          <p>Flags archives, executables, password-in-the-email, file-host links, URL shorteners and “sign in to view” pages — explained in plain English.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg><use href="#icon-list"/></svg></div>
-          <h3>Deal-term extraction</h3>
-          <p>Rate, deliverables, timeline, exclusivity, usage rights, payment terms. Perpetual and all-media rights get a red flag with what to counter.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg><use href="#icon-check-circle"/></svg></div>
-          <h3>Deal tracker <span class="pro-tag">Pro</span></h3>
-          <p>New → Negotiating → Contract → Delivered → Paid, set from the side panel. Every deal in one list, exportable to CSV.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg><use href="#icon-bell"/></svg></div>
-          <h3>Deliverable &amp; payment reminders <span class="pro-tag">Pro</span></h3>
-          <p>Get nudged before a deliverable is due and when an invoice passes its Net 30. Never chase a payment from memory again.</p>
-        </div>
-        <div class="card reveal">
-          <div class="card-icon"><svg><use href="#icon-eye-off"/></svg></div>
-          <h3>Private by architecture</h3>
-          <p>Runs on the page you already have open. No Gmail API, no OAuth, no server sees your email. Uninstall and nothing is left behind.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="compare">
-    <div class="section-inner">
-      <p class="section-label">Compared to the alternatives</p>
-      <h2 class="section-title">The other tools want your inbox. We just want you to be safe in it.</h2>
-      <div class="compare-wrap">
-        <table class="compare">
-          <thead>
-            <tr><th>Approach</th><th>Works inside Gmail</th><th>Needs inbox OAuth</th><th>Scam &amp; malware detection</th><th>Deal terms</th><th>Price</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Sponsir</strong></td><td class="yes">Yes — extension</td><td class="yes">No</td><td class="yes">Core feature</td><td class="yes">Yes</td><td>Free · Pro $7/mo</td></tr>
-            <tr><td>Cloud “AI inbox managers”</td><td class="no">No — separate app</td><td class="no">Yes, full mailbox</td><td class="no">Some</td><td>Yes</td><td>$16–62/mo</td></tr>
-            <tr><td>Web deal CRMs</td><td class="no">No — manual entry</td><td class="yes">No</td><td class="no">No</td><td>Manual</td><td>$12–28/mo</td></tr>
-            <tr><td>Paste-in scam checkers</td><td class="no">No</td><td class="yes">No</td><td>Basic</td><td class="no">No</td><td>Free</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section class="section alt" id="pricing">
-    <div class="section-inner">
-      <p class="section-label">Pricing</p>
-      <h2 class="section-title">Protection is free. Pay only for the desk.</h2>
-      <p class="section-lede">Every sponsorship email gets checked for free. Pro adds the desk work: unlimited terms, tracking and reminders.</p>
-      <div class="billing-toggle" role="group" aria-label="Billing period">
-        <button class="billing-option" id="billing-monthly" type="button" aria-pressed="false">Monthly</button>
-        <button class="billing-option" id="billing-yearly" type="button" aria-pressed="true">Yearly <span class="billing-save">Save 30%</span></button>
       </div>
       <div class="plans">
-        <div class="card plan reveal">
-          <h3>Free</h3>
-          <div class="price">$0</div>
+        <div class="plan">
+          <p class="plan-name">Free</p>
+          <div class="price serif">$0</div>
+          <p class="plan-sub">Forever. No account needed.</p>
           <ul>
-            <li><svg><use href="#icon-check"/></svg>Sponsor verification badge on every thread</li>
-            <li><svg><use href="#icon-check"/></svg>Malware &amp; phishing lure warnings</li>
-            <li><svg><use href="#icon-check"/></svg>10 deal-term extractions / month</li>
-            <li><svg><use href="#icon-check"/></svg>Free web Pitch Checker</li>
+            <li>Sponsor verification on every thread</li>
+            <li>Malware &amp; phishing lure warnings</li>
+            <li>10 deal-term extractions a month</li>
+            <li>Free web Pitch Checker</li>
           </ul>
-          <a href="#waitlist" class="btn btn-secondary">Join the waitlist</a>
+          <a href="#waitlist" class="btn btn-line">Join the waitlist</a>
         </div>
-        <div class="card plan featured reveal">
-          <h3>Pro</h3>
-          <div class="price" id="pricing-price">$59<small id="pricing-period">/year</small></div>
-          <div class="price-desc" id="pricing-desc">Works out to $4.92/month, billed once a year</div>
+        <div class="plan pro">
+          <p class="plan-name">Pro <span>Most popular</span></p>
+          <div class="price serif" id="pricing-price">$59<small id="pricing-period">/year</small></div>
+          <p class="plan-sub" id="pricing-desc">Works out to $4.92/month, billed once a year</p>
           <ul>
-            <li><svg><use href="#icon-check"/></svg>Everything in Free</li>
-            <li><svg><use href="#icon-check"/></svg>Unlimited deal-term extraction</li>
-            <li><svg><use href="#icon-check"/></svg>Deal tracker &amp; CSV export</li>
-            <li><svg><use href="#icon-check"/></svg>Deliverable &amp; payment reminders</li>
-            <li><svg><use href="#icon-check"/></svg>Up to 3 devices</li>
-            <li><svg><use href="#icon-check"/></svg>Cancel any time · 14-day money-back guarantee</li>
+            <li>Everything in Free</li>
+            <li>Unlimited deal-term extraction</li>
+            <li>Deal tracker &amp; CSV export</li>
+            <li>Deliverable &amp; payment reminders</li>
+            <li>Up to 3 devices</li>
           </ul>
-          <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
-          <p class="plan-note">Start the 7-day free trial from the extension — no card required.</p>
+          <a href="#waitlist" class="btn btn-gold">Join the waitlist</a>
+          <p class="plan-note">7-day free trial from the extension, no card. Cancel any time · 14-day money-back guarantee.</p>
         </div>
       </div>
-      <p class="pricing-note">Prices in USD. Taxes handled at checkout. Made by House of Arqam Ventures LLC, makers of Manila Mail Manager.</p>
+      <p class="pricing-note">Prices in USD. Taxes handled at checkout.</p>
     </div>
   </section>
 
-  <section class="section" id="waitlist">
-    <div class="section-inner">
-      <div class="waitlist-box reveal">
-        <h2>Be first in line.</h2>
-        <p>We’ll email you once when the extension is ready. Nothing else.</p>
+  <section class="wrap faq" id="faq">
+    <div>
+      <p class="num">04 — Questions</p>
+      <h2 class="serif h2-small">Things creators ask us.</h2>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>Does Sponsir read my email?</summary>
+        <p>Only on your screen. It runs as a browser extension on the Gmail tab you already have open and analyses the message you are looking at, locally. There is no server, no Gmail API access and no OAuth “read all your mail” permission to grant. Nothing is uploaded.</p>
+      </details>
+      <details>
+        <summary>How is this different from Gmail’s own spam filter?</summary>
+        <p>Gmail catches known bad senders. Sponsorship scams use freshly registered lookalike domains and clean-looking archives, so most land in the inbox. Sponsir understands the <em>context</em> — that an email claiming to be NordVPN isn’t from a NordVPN domain, or that a “brief” shouldn’t be a password-protected ZIP.</p>
+      </details>
+      <details>
+        <summary>Will it work with a Google Workspace address?</summary>
+        <p>Yes. Workspace uses the same Gmail interface, so Sponsir works on <code>you@yourbrand.com</code> exactly as on <code>@gmail.com</code>.</p>
+      </details>
+      <details>
+        <summary>What about Instagram or TikTok DMs?</summary>
+        <p>Not at launch. Paste any DM into the free <a href="check.html">Pitch Checker</a> and you get the same analysis. In-app DM support is on the roadmap.</p>
+      </details>
+      <details>
+        <summary>Can a real brand be flagged by mistake?</summary>
+        <p>Yes — that’s why the badge says <em>Unverified</em> rather than <em>Scam</em> unless the signals are unambiguous (lookalike domain plus a malware-style attachment, for example). You can mark a sender as trusted; that choice stays on your device.</p>
+      </details>
+      <details>
+        <summary>Which browsers?</summary>
+        <p>Chrome and Edge at launch (any Chromium browser that can install from the Chrome Web Store). Firefox is planned.</p>
+      </details>
+      <details>
+        <summary>Who makes this?</summary>
+        <p>House of Arqam Ventures LLC — the team behind <a href="https://manilamail.app/" target="_blank" rel="noopener">Manila Mail Manager</a>, a local-first Gmail extension used to find and cancel subscriptions. Sponsir is built on the same privacy-first engine.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="dark cta" id="waitlist">
+    <div class="wrap cta-grid">
+      <div>
+        <h2 class="serif">Be first <em>in line.</em></h2>
+        <p>One email when the extension is ready. Nothing else.</p>
+      </div>
+      <div>
         <form class="waitlist-form" data-source="home" novalidate>
           <label class="sr-only" for="waitlist-email">Email address</label>
           <input type="email" id="waitlist-email" name="email" placeholder="you@yourchannel.com" autocomplete="email" required>
-          <button type="submit" class="btn btn-primary">Join the waitlist</button>
+          <button type="submit" class="btn btn-gold">Join the waitlist</button>
         </form>
         <p class="form-status" role="status" aria-live="polite"></p>
-        <p class="waitlist-fine">No spam. Unsubscribe with one click. See our <a href="privacy.html">privacy policy</a>.</p>
+        <p class="cta-fine">No spam. Unsubscribe with one click · <a href="privacy.html">Privacy policy</a></p>
       </div>
     </div>
   </section>
 
-  <section class="section alt" id="faq">
-    <div class="section-inner">
-      <p class="section-label">FAQ</p>
-      <h2 class="section-title">Questions creators ask us</h2>
-      <div class="faq">
-        <details>
-          <summary>Does Sponsir read my email?</summary>
-          <p>Only on your screen. It runs as a browser extension on the Gmail tab you already have open and analyses the message you are looking at, locally. There is no server, no Gmail API access and no OAuth “read all your mail” permission to grant. Nothing is uploaded.</p>
-        </details>
-        <details>
-          <summary>How is this different from Gmail’s own spam filter?</summary>
-          <p>Gmail catches known bad senders. Sponsorship scams use freshly registered lookalike domains and clean-looking archives, so most land in the inbox. Sponsir understands the <em>context</em> — that an email claiming to be NordVPN isn’t from a NordVPN domain, or that a “brief” shouldn’t be a password-protected ZIP.</p>
-        </details>
-        <details>
-          <summary>Will it work with a Google Workspace / custom-domain address?</summary>
-          <p>Yes. Workspace uses the same Gmail interface, so Sponsir works on <code>you@yourbrand.com</code> exactly as on <code>@gmail.com</code>.</p>
-        </details>
-        <details>
-          <summary>What about Instagram or TikTok DMs?</summary>
-          <p>Not at launch. Paste any DM into the free <a href="check.html">Pitch Checker</a> and you get the same analysis. In-app DM support is on the roadmap.</p>
-        </details>
-        <details>
-          <summary>Can a real brand be flagged by mistake?</summary>
-          <p>Yes — that’s why the badge says <em>Unverified</em> rather than <em>Scam</em> unless the signals are unambiguous (lookalike domain plus a malware-style attachment, for example). You can mark a sender as trusted; that choice stays on your device.</p>
-        </details>
-        <details>
-          <summary>Which browsers?</summary>
-          <p>Chrome and Edge at launch (any Chromium browser that can install from the Chrome Web Store). Firefox is planned.</p>
-        </details>
-        <details>
-          <summary>Who makes this?</summary>
-          <p>House of Arqam Ventures LLC — the team behind <a href="https://manilamail.app/" target="_blank" rel="noopener">Manila Mail Manager</a>, a local-first Gmail extension used to find and cancel subscriptions. Sponsir is built on the same privacy-first engine.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <footer>
+  <footer class="wrap">
     <div class="footer-left">
       <img src="hoa-logo.png" alt="House of Arqam Ventures LLC" width="24" height="24" loading="lazy">
-      Sponsir — at your service. Your brand deals, inspected before you reply. Made by House of Arqam Ventures LLC
+      © House of Arqam Ventures LLC · makers of Manila Mail Manager
     </div>
     <div class="footer-links">
       <a href="check.html">Pitch Checker</a>

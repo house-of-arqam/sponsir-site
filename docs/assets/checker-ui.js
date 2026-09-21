@@ -62,7 +62,7 @@ Maya`
     });
   });
 
-  const EMPTY = '<div class="result-empty"><img src="assets/img/sir-unverified.svg" alt="" width="150" height="176"><p>Paste a pitch and click <strong>Check this pitch</strong>.</p></div>';
+  const EMPTY = '<div class="result-empty"><img src="assets/img/sir-unverified.svg" alt="" width="120" height="140"><p>Paste a pitch and click <strong>Check this pitch</strong>.</p></div>';
 
   runButton.addEventListener('click', run);
   if (clearButton) {
