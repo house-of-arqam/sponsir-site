@@ -37,6 +37,31 @@
     reveals.forEach(el => el.classList.add('visible'));
   }
 
+  // Pricing: monthly / yearly toggle
+  const monthlyBtn = document.getElementById('billing-monthly');
+  const yearlyBtn = document.getElementById('billing-yearly');
+  const priceEl = document.getElementById('pricing-price');
+  const periodEl = document.getElementById('pricing-period');
+  const priceDescEl = document.getElementById('pricing-desc');
+  const PLANS = {
+    monthly: { amount: '$7', period: '/month', desc: 'Billed monthly \u00b7 switch to yearly and save 30%' },
+    yearly: { amount: '$59', period: '/year', desc: 'Works out to $4.92/month, billed once a year' }
+  };
+
+  function showPlan(name) {
+    const plan = PLANS[name];
+    priceEl.firstChild.nodeValue = plan.amount;
+    periodEl.textContent = plan.period;
+    priceDescEl.textContent = plan.desc;
+    monthlyBtn.setAttribute('aria-pressed', String(name === 'monthly'));
+    yearlyBtn.setAttribute('aria-pressed', String(name === 'yearly'));
+  }
+
+  if (monthlyBtn && yearlyBtn && priceEl && periodEl && priceDescEl) {
+    monthlyBtn.addEventListener('click', () => showPlan('monthly'));
+    yearlyBtn.addEventListener('click', () => showPlan('yearly'));
+  }
+
   // Waitlist form(s)
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 

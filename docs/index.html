@@ -91,7 +91,7 @@
           <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
           <a href="check.html" class="btn btn-secondary">Check a pitch now — free</a>
         </div>
-        <p class="hero-secondary">Founding members get Pro for <strong>$39/year, for life</strong>. First 200 only.</p>
+        <p class="hero-secondary">Free forever for protection. Pro is <strong>$7/month or $59/year</strong>, with a 7-day free trial.</p>
       </div>
       <div class="hero-visual reveal">
         <img class="hero-sir" src="assets/img/sir-hero.svg" width="150" height="176" alt="Sir, the Sponsir mascot: a flat-style gentleman with a top hat, gold monocle, mustache and bow tie, smiling" fetchpriority="high">
@@ -241,7 +241,11 @@
     <div class="section-inner">
       <p class="section-label">Pricing</p>
       <h2 class="section-title">Protection is free. Pay only for the desk.</h2>
-      <p class="section-lede">Planned pricing for launch. Founding-member pricing is locked for waitlist members who upgrade in the first month.</p>
+      <p class="section-lede">Every sponsorship email gets checked for free. Pro adds the desk work: unlimited terms, tracking and reminders.</p>
+      <div class="billing-toggle" role="group" aria-label="Billing period">
+        <button class="billing-option" id="billing-monthly" type="button" aria-pressed="false">Monthly</button>
+        <button class="billing-option" id="billing-yearly" type="button" aria-pressed="true">Yearly <span class="billing-save">Save 30%</span></button>
+      </div>
       <div class="plans">
         <div class="card plan reveal">
           <h3>Free</h3>
@@ -255,28 +259,19 @@
           <a href="#waitlist" class="btn btn-secondary">Join the waitlist</a>
         </div>
         <div class="card plan featured reveal">
-          <h3>Founding Pro</h3>
-          <div class="price">$39<small>/year, for life</small></div>
-          <div class="was">$59/year after the first 200</div>
+          <h3>Pro</h3>
+          <div class="price" id="pricing-price">$59<small id="pricing-period">/year</small></div>
+          <div class="price-desc" id="pricing-desc">Works out to $4.92/month, billed once a year</div>
           <ul>
             <li><svg><use href="#icon-check"/></svg>Everything in Free</li>
             <li><svg><use href="#icon-check"/></svg>Unlimited deal-term extraction</li>
             <li><svg><use href="#icon-check"/></svg>Deal tracker &amp; CSV export</li>
             <li><svg><use href="#icon-check"/></svg>Deliverable &amp; payment reminders</li>
             <li><svg><use href="#icon-check"/></svg>Up to 3 devices</li>
+            <li><svg><use href="#icon-check"/></svg>Cancel any time · 14-day money-back guarantee</li>
           </ul>
-          <a href="#waitlist" class="btn btn-primary" data-plan="founding">Reserve founding price</a>
-        </div>
-        <div class="card plan reveal">
-          <h3>Pro</h3>
-          <div class="price">$7<small>/month</small></div>
-          <div class="was">or $59/year</div>
-          <ul>
-            <li><svg><use href="#icon-check"/></svg>Everything in Founding Pro</li>
-            <li><svg><use href="#icon-check"/></svg>Cancel any time</li>
-            <li><svg><use href="#icon-check"/></svg>14-day money-back guarantee</li>
-          </ul>
-          <a href="#waitlist" class="btn btn-secondary">Join the waitlist</a>
+          <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
+          <p class="plan-note">Start the 7-day free trial from the extension — no card required.</p>
         </div>
       </div>
       <p class="pricing-note">Prices in USD. Taxes handled at checkout. Made by House of Arqam Ventures LLC, makers of Manila Mail Manager.</p>
@@ -286,8 +281,8 @@
   <section class="section" id="waitlist">
     <div class="section-inner">
       <div class="waitlist-box reveal">
-        <h2>Be first in line — and lock the founding price.</h2>
-        <p>We’ll email you once when the extension is ready, and once more with your founding-member link. Nothing else.</p>
+        <h2>Be first in line.</h2>
+        <p>We’ll email you once when the extension is ready. Nothing else.</p>
         <form class="waitlist-form" data-source="home" novalidate>
           <label class="sr-only" for="waitlist-email">Email address</label>
           <input type="email" id="waitlist-email" name="email" placeholder="you@yourchannel.com" autocomplete="email" required>
