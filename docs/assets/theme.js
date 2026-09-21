@@ -4,6 +4,7 @@
 (function () {
   const root = document.documentElement;
   const STORAGE_KEY = 'sponsir-theme';
+  root.className += ' js'; // lets CSS hide no-JS fallbacks (waitlist form, checker)
 
   let stored = null;
   try {

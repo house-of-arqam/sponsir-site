@@ -1,5 +1,12 @@
 (function () {
-  const config = window.SPONSIR_CONFIG || {};
+  const site = window.SITE_CONFIG || {};
+  // Waitlist + anonymous counters live on the licensing Worker (same origin
+  // as checkout); the form falls back to mailto: when no Worker is configured.
+  const config = {
+    waitlistEndpoint: site.licenseApi ? site.licenseApi + '/waitlist' : '',
+    eventEndpoint: site.licenseApi ? site.licenseApi + '/event' : '',
+    fallbackEmail: site.supportEmail || ''
+  };
   const engine = window.SponsirChecker;
   const input = document.getElementById('checker-input');
   const output = document.getElementById('checker-result');
