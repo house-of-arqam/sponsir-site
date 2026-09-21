@@ -326,6 +326,8 @@ footer {
 }
 .footer-left { display: flex; align-items: center; gap: 10px; }
 .footer-left img { width: 22px; height: 22px; border-radius: 5px; }
+.footer-left a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.footer-left a:hover { color: var(--ink); }
 .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
 .footer-links a { color: var(--soft); text-decoration: none; }
 .footer-links a:hover { color: var(--ink); }
