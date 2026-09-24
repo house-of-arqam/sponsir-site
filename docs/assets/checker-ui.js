@@ -104,9 +104,9 @@ Maya`
 
   const VERDICTS = {
     low: {
-      title: 'Looks legit',
-      text: 'No major red flags. Still confirm the sender on LinkedIn or the brand\u2019s site before sharing rates or opening files.',
-      sir: 'verified'
+      title: 'No red flags',
+      text: 'I couldn\u2019t confirm the sender, so check them on LinkedIn or the brand\u2019s site before sharing rates or opening files.',
+      sir: 'unverified'
     },
     medium: {
       title: 'Hmm. One moment.',
@@ -124,6 +124,24 @@ Maya`
       sir: 'dangerous'
     }
   };
+
+  // "Looks legit" and the verified Sir only when the sender was confirmed.
+  const VERIFIED = {
+    title: 'Looks legit',
+    text: 'The sender checks out and nothing looks off. Still confirm the person on LinkedIn before sharing rates or opening files.',
+    sir: 'verified'
+  };
+
+  const INSUFFICIENT = {
+    title: 'Not enough to judge',
+    text: 'Paste the whole email, including the From: line, so I can check who sent it.',
+    sir: 'unverified'
+  };
+
+  function verdictFor(result) {
+    if (result.insufficient) return INSUFFICIENT;
+    return result.verified ? VERIFIED : VERDICTS[result.level];
+  }
 
   function esc(value) {
     return String(value == null ? '' : value)
@@ -164,7 +182,7 @@ Maya`
   }
 
   function render(result) {
-    const verdict = VERDICTS[result.level];
+    const verdict = verdictFor(result);
     const findings = result.findings.map(f => `
       <li class="finding ${esc(f.severity)}">
         <span class="sev">${esc(f.severity)}</span>

@@ -4,6 +4,10 @@
 //
 // analyze(text) -> {
 //   score, level: 'low' | 'medium' | 'high' | 'critical',
+//   verified: true when the sender is confirmed (official brand domain or
+//             header authentication) and nothing serious was found,
+//   insufficient: true when there was no sender and nothing to go on, so a
+//             "low" level means "not enough to judge" rather than "fine",
 //   findings: [{ id, severity: 'info' | 'low' | 'medium' | 'high' | 'critical', title, detail }],
 //   sender: { from, fromDomain, replyTo, replyToDomain },
 //   brands: [{ name, official: [domain], matchedDomain, lookalike }],
@@ -29,12 +33,20 @@
     'file.io', 'transfer.sh', 'filetransfer.io', 'wetransfer.com', 'we.tl', 'dropbox.com/scl',
     'dropboxusercontent.com', 'drive.google.com/uc', 'pixeldrain.com', 'files.fm',
     'ufile.io', 'krakenfiles.com', 'bowfile.com', 'send.cm', 'catbox.moe', 'discord.com/attachments',
-    'cdn.discordapp.com', '1fichier.com', 'uploadnow.io', 'filemail.com', 'easyupload.io'
+    'cdn.discordapp.com', '1fichier.com', 'uploadnow.io', 'filemail.com', 'easyupload.io',
+    '1drv.ms', 'sites.google.com'
   ];
 
   // 'com' and 'app' are omitted on purpose: they collide with domain names in prose.
-  var DANGEROUS_EXT = ['exe', 'scr', 'bat', 'cmd', 'pif', 'msi', 'msix', 'js', 'jse', 'vbs',
-    'vbe', 'wsf', 'wsh', 'ps1', 'hta', 'lnk', 'iso', 'img', 'dmg', 'pkg', 'apk', 'jar', 'reg', 'dll'];
+  var DANGEROUS_EXT = ['exe', 'scr', 'bat', 'cmd', 'pif', 'msi', 'msix', 'appx', 'js', 'jse', 'vbs',
+    'vbe', 'wsf', 'wsh', 'ps1', 'hta', 'lnk', 'url', 'iso', 'img', 'vhd', 'vhdx', 'dmg', 'pkg', 'apk',
+    'jar', 'reg', 'dll', 'xll', 'one', 'docm', 'xlsm', 'pptm', 'html', 'htm', 'svg'];
+  // Extensions that are also everyday words or tech names in prose ("Next.js",
+  // "index.html", "ISO 400"). They only count when the name looks like a file
+  // (underscore, dash, digit or a second extension) or the sentence talks about
+  // attaching, downloading or opening it.
+  var AMBIGUOUS_EXT = ['js', 'img', 'reg', 'pkg', 'jar', 'iso', 'one', 'url', 'html', 'htm', 'svg'];
+  var FILE_CONTEXT = /\b(attach(ed|ment|ments)?|download(ed|ing)?|open(ing)?|run(ning)?|install(ing)?|extract|unzip|launch)\b/i;
   var ARCHIVE_EXT = ['zip', 'rar', '7z', 'tar', 'gz', 'tgz', 'bz2', 'xz', 'arj', 'cab', 'ace'];
 
   // Brands that show up most often in impersonated sponsorship pitches, with
@@ -115,12 +127,12 @@
     { name: 'Coinbase', tokens: ['coinbase'], official: ['coinbase.com'] },
     { name: 'Binance', tokens: ['binance'], official: ['binance.com'] },
     { name: 'Crypto.com', tokens: ['crypto.com'], official: ['crypto.com'] },
-    { name: 'Amazon', platformOnly: true, tokens: ['amazon'], official: ['amazon.com', 'amazon.co.uk', 'amazon.de', 'amazon.ca', 'amazonsellerservices.com'] },
-    { name: 'Google', platformOnly: true, tokens: ['google', 'youtube'], official: ['google.com', 'youtube.com', 'gmail.com'] },
+    { name: 'Amazon', platformOnly: true, tokens: ['amazon'], official: ['amazon.com', 'amazon.co.uk', 'amazon.de', 'amazon.ca', 'amazon.fr', 'amazon.it', 'amazon.es', 'amazon.nl', 'amazon.se', 'amazon.pl', 'amazon.in', 'amazon.sg', 'amazon.ae', 'amazon.sa', 'amazon.eg', 'amazon.co.jp', 'amazon.com.au', 'amazon.com.mx', 'amazon.com.br', 'amazon.com.tr', 'amazonsellerservices.com'] },
+    { name: 'Google', platformOnly: true, tokens: ['google', 'youtube'], official: ['google.com', 'youtube.com', 'youtu.be', 'gmail.com', 'googlemail.com', 'goo.gl', 'withgoogle.com'] },
     { name: 'Meta', platformOnly: true, tokens: ['instagram', 'facebook', 'meta'], official: ['meta.com', 'fb.com', 'facebookmail.com', 'instagram.com', 'facebook.com'] },
     { name: 'TikTok', platformOnly: true, tokens: ['tiktok'], official: ['tiktok.com', 'bytedance.com', 'tiktokglobalshop.com'] },
     { name: 'Spotify', platformOnly: true, tokens: ['spotify'], official: ['spotify.com', 'spotifymail.com'] },
-    { name: 'Discord', platformOnly: true, tokens: ['discord'], official: ['discord.com', 'discordapp.com'] },
+    { name: 'Discord', platformOnly: true, tokens: ['discord'], official: ['discord.com', 'discordapp.com', 'discord.gg', 'discord.new', 'dis.gd'] },
     { name: 'Twitch', platformOnly: true, tokens: ['twitch'], official: ['twitch.tv', 'amazon.com'] },
     { name: 'Microsoft', tokens: ['microsoft', 'xbox'], official: ['microsoft.com', 'xbox.com'] },
     { name: 'Nintendo', tokens: ['nintendo'], official: ['nintendo.com', 'nintendo.net', 'nintendo.co.jp'] },
@@ -159,28 +171,38 @@
     /\burgent(ly)?\b/i, /\blast chance\b/i, /\bimmediate(ly)? response\b/i, /\breply (right )?now\b/i
   ];
 
+  // Matched per sentence. A sentence where the brand is the one paying ("we
+  // cover all shipping costs") is skipped: that is a normal gifting pitch.
   var PAY_TO_PLAY = [
-    /\b(small|little|minor|refundable|processing|activation|registration|verification)\s+(fee|deposit|payment|charge)\b/i,
-    /\bpay (for )?(the |a |an )?(shipping|delivery|customs|product|sample|item)s?\b/i,
+    /\b(small|little|minor|refundable|processing|activation|registration|verification)\s+(shipping\s+|delivery\s+|customs\s+)?(fee|deposit|payment|charge)\b/i,
+    /\bpay (for )?(the |a |an )?(small |one[- ]time )?(shipping|delivery|customs|product|sample|item)s?\b/i,
     /\b(shipping|delivery|customs|handling)\s+(fee|cost|charge)s?\b/i,
     /\b(refund(ed)?|reimburse(d)?)\s+(after|once|when|upon)\b/i,
     /\bbuy (the )?(product|item|sample)s?\s+(first|yourself|upfront)\b/i,
     /\b(purchase|order)\s+(first|upfront|in advance)\b/i,
-    /\bwe will (send|pay) you (back|the money)\b/i
+    /\bwe will (send|pay) you (back|the money)\b/i,
+    // "Ambassador" scams: the creator buys at a steep "exclusive" discount.
+    /\b(you|yourself)\b[^.!?\n]{0,40}\b(buy|purchase|order|pay for)\b[^.!?\n]{0,60}\b(\d{2,3}\s*%\s*off|discount(ed)?|promo code|coupon)\b/i,
+    /\b(\d{2,3}\s*%\s*off|discount code|promo code|coupon)\b[^.!?\n]{0,60}\b(you|yourself)\b[^.!?\n]{0,30}\b(buy|purchase|order|pay)\b/i
   ];
+  var BRAND_PAYS = /\b(we|brand|they)('ll| will)?\s+(cover|handle|take care of|pay for|include)\s+(all\s+)?(the\s+|any\s+)?(shipping|delivery|customs|handling)|\b(free|complimentary|prepaid)\s+(shipping|delivery)\b|\b(shipping|delivery)\s+(is\s+|will be\s+)?(free|covered|on us|included|prepaid)\b/i;
 
   var OFF_PLATFORM = [
     /\b(gift ?cards?|steam cards?|itunes cards?)\b/i, /\b(bitcoin|btc|ethereum|usdt|crypto(currency)?)\b/i,
-    /\b(western union|moneygram|cash ?app|zelle)\b/i,
-    /\b(contact|reach|message|text|dm|chat)\s+(me|us)\s+(on|via|at)\s+(telegram|whatsapp|signal|skype|wechat)\b/i,
-    /\b(telegram|whatsapp)\s*:\s*\+?\d/i
+    /\b(western union|moneygram|cash ?app|zelle|venmo|paypal\.me)\b/i,
+    /\bfriends\s*(and|&)\s*family\b/i,
+    /\b(contact|reach|message|text|dm|chat|add|find|ping)\s+(me|us)\s+(up\s+)?(on|via|at)\s+(telegram|whatsapp|signal|skype|wechat)\b/i,
+    /\b(telegram|whatsapp|signal)\s*[:@]\s*[@+]?\w/i,
+    /\b(t\.me|wa\.me)\//i
   ];
 
   var LOGIN_LURE = [
     /\b(log ?in|sign ?in|authenticate|verify)\s+(with|via|using|through)?\s*(your\s+)?(google|gmail|youtube|instagram|tiktok|facebook|meta)?\s*(account)?\s*(to|and)\s+(view|see|open|access|download|review|accept)\b/i,
     /\b(verify|confirm)\s+(your\s+)?(channel|account|identity|ownership)\b/i,
-    /\b(view|open|access|review)\s+(the\s+)?(contract|agreement|brief|proposal|offer)\s+(here|online|via the (link|portal))\b/i,
-    /\b(secure|encrypted)\s+(portal|document|link)\b/i
+    // "Review the brief here" or "our secure portal" alone is how real agencies
+    // write; it only becomes a lure with a sign-in step.
+    /\b(log ?in|sign ?in)\b[^.!?\n]{0,60}\b(secure|encrypted)\s+(portal|document|link)\b/i,
+    /\b(secure|encrypted)\s+(portal|document|link)\b[^.!?\n]{0,60}\b(log ?in|sign ?in)\b/i
   ];
 
   var ARCHIVE_PASSWORD = [
@@ -212,6 +234,44 @@
 
   function mentionsToken(lower, token) {
     return new RegExp('(^|[^a-z0-9])' + escapeRe(token) + '([^a-z0-9]|$)', 'i').test(lower);
+  }
+
+  function sentences(text) {
+    return text.replace(/([.!?])\s+/g, '$1\n').split(/\n+/);
+  }
+
+  // Common words scammers bolt onto a brand name to make a domain that reads as
+  // official: nordvpn-partners, nordvpnpartners, sheincollabs.
+  var LOOKALIKE_AFFIXES = ['partner', 'partners', 'collab', 'collabs', 'collaboration', 'collaborations',
+    'team', 'official', 'support', 'creator', 'creators', 'sponsor', 'sponsors', 'sponsorship',
+    'sponsorships', 'brand', 'brands', 'deal', 'deals', 'mail', 'hq', 'inc', 'llc', 'media', 'promo',
+    'promos', 'marketing', 'ambassador', 'ambassadors', 'influencer', 'influencers', 'affiliate',
+    'affiliates', 'campaign', 'campaigns', 'global', 'group', 'corp', 'app', 'agency', 'us', 'usa',
+    'uk', 'pr', 'ads', 'business', 'verify', 'secure', 'login', 'help', 'care', 'contact', 'info',
+    'news', 'io', 'program', 'programs', 'network', 'studio', 'studios', 'shop', 'store'];
+
+  // Does a domain carry the brand token as its own word? Labels are split on
+  // dots and dashes; the token must be a whole label, a label plus digits, or a
+  // label glued to one of the affixes above. Platform brands need a whole label:
+  // "youtubermgmt" is a talent agency, not YouTube.
+  function domainCarriesToken(domain, token, strict) {
+    var tok = token.replace(/[^a-z0-9]/g, '');
+    if (tok.length < 4) return false;
+    return domain.split(/[.-]/).some(function (label) {
+      if (label === tok) return true;
+      if (strict) return false;
+      if (/^\d+$/.test(label.replace(tok, '')) && label.indexOf(tok) !== -1) return true;
+      if (label.indexOf(tok) === 0) return LOOKALIKE_AFFIXES.indexOf(label.slice(tok.length)) !== -1;
+      if (label.slice(-tok.length) === tok) return LOOKALIKE_AFFIXES.indexOf(label.slice(0, -tok.length)) !== -1;
+      return false;
+    });
+  }
+
+  // Header lines only: everything before the first blank line. The body can
+  // say "spf=pass" all it likes.
+  function headerBlock(text) {
+    var end = text.search(/\n\s*\n/);
+    return end === -1 ? text : text.slice(0, end);
   }
 
   function unique(list) {
@@ -282,10 +342,19 @@
     names.forEach(function (n) {
       var ext = n.split('.').pop().toLowerCase();
       if (DANGEROUS_EXT.indexOf(ext) !== -1 || ARCHIVE_EXT.indexOf(ext) !== -1 || ['pdf', 'docx', 'doc', 'xlsx', 'pptx'].indexOf(ext) !== -1) {
-        if (!/^(www|https?)\b/i.test(n) && !/@/.test(n)) out.push({ name: n.trim(), ext: ext });
+        if (/^(www|https?)\b/i.test(n) || /@/.test(n)) return;
+        if (AMBIGUOUS_EXT.indexOf(ext) !== -1 && !looksLikeFile(n, text)) return;
+        out.push({ name: n.trim(), ext: ext });
       }
     });
     return out;
+  }
+
+  function looksLikeFile(name, text) {
+    var base = name.trim().split(/\s+/).pop();
+    var stem = base.slice(0, base.lastIndexOf('.'));
+    if (/[_\-\d]/.test(stem) || /\.[a-z0-9]{2,5}$/i.test(stem)) return true;
+    return sentences(text).some(function (s) { return s.indexOf(base) !== -1 && FILE_CONTEXT.test(s); });
   }
 
   function extractMoney(text) {
@@ -370,11 +439,7 @@
       var lookalike = null;
       candidateDomains.concat(hosts).forEach(function (d) {
         if (isOfficial(d, b.official)) return;
-        var stripped = d.replace(/[^a-z0-9]/g, '');
-        var hit = b.tokens.some(function (t) {
-          var tok = t.replace(/[^a-z0-9]/g, '');
-          return tok.length >= 4 && stripped.indexOf(tok) !== -1;
-        });
+        var hit = b.tokens.some(function (t) { return domainCarriesToken(d, t, b.platformOnly); });
         if (hit && !lookalike) lookalike = d;
       });
       if (mentioned || lookalike) {
@@ -411,12 +476,22 @@
     if (candidateDomains.concat(hosts).some(function (d) { return /(^|\.)xn--/.test(d); })) {
       add('punycode', 'critical', 'Internationalised (punycode) domain', 'A domain starting with xn-- can display as a brand name using lookalike characters. Treat as hostile.');
     }
-    var authFail = text.match(/\b(spf|dkim|dmarc)\s*=\s*(fail|softfail|permerror|temperror|none)\b/ig);
-    var authPass = text.match(/\b(spf|dkim|dmarc)\s*=\s*pass\b/ig);
+    // Authentication only counts from real header lines (before the first blank
+    // line), so the body can't vouch for itself. A pass needs DMARC, or DKIM
+    // signed by the sender's own domain; a platform signing on the brand's
+    // behalf proves nothing about the brand.
+    var authLines = headerBlock(text).split('\n').filter(function (l) {
+      return /^\s*(arc-)?authentication-results\s*:|^\s*received-spf\s*:/i.test(l);
+    }).join('\n');
+    var authFail = authLines.match(/\b(spf|dkim|dmarc)\s*=\s*(fail|softfail|permerror|temperror|none)\b/ig);
+    var dmarcPass = /\bdmarc\s*=\s*pass\b/i.test(authLines);
+    var dkimDomains = [];
+    authLines.replace(/\bdkim\s*=\s*pass\b[^;\n]*?\bheader\.(?:d|i)\s*=\s*@?([a-z0-9.-]+)/ig, function (_m, d) { dkimDomains.push(d.toLowerCase()); return _m; });
+    var dkimAligned = fromDomain && dkimDomains.some(function (d) { return sameOrg(d, fromDomain); });
     if (authFail && authFail.length) {
       add('auth_fail', 'high', 'Email authentication failed', 'Headers show ' + unique(authFail).join(', ') + '. The message may not come from the domain it claims.');
-    } else if (authPass && authPass.length >= 2) {
-      add('auth_pass', 'info', 'Email authentication passed', unique(authPass).join(', ') + ' \u2014 the sending domain is genuine (though the domain itself may still be a lookalike).');
+    } else if (dmarcPass || dkimAligned) {
+      add('auth_pass', 'info', 'Email authentication passed', (dmarcPass ? 'DMARC passed' : 'DKIM signed by ' + registrable(fromDomain)) + ' \u2014 the sending domain is genuine (though the domain itself may still be a lookalike).');
     }
 
     // ---- lure checks ------------------------------------------------------
@@ -461,7 +536,10 @@
     if (urgencyHits.length) {
       add('urgency', urgencyHits.length > 1 ? 'medium' : 'low', 'Artificial urgency', 'Deadlines like \u201creply within 24 hours\u201d or \u201climited slots\u201d push you to skip verification.');
     }
-    if (PAY_TO_PLAY.some(function (re) { return re.test(text); })) {
+    var payHit = sentences(text).some(function (s) {
+      return !BRAND_PAYS.test(s) && PAY_TO_PLAY.some(function (re) { return re.test(s); });
+    });
+    if (payHit) {
       add('pay_to_play', 'critical', 'You are asked to pay something first', 'Real sponsors never ask creators for fees, deposits, shipping or to buy the product first. This is the advance-fee scam template.');
     }
     var offHits = OFF_PLATFORM.filter(function (re) { return re.test(text); });
@@ -524,9 +602,18 @@
     var order = { critical: 0, high: 1, medium: 2, low: 3, info: 4 };
     findings.sort(function (a, b) { return order[a.severity] - order[b.severity]; });
 
+    // One critical finding (a lure, a lookalike, pay-to-play) is enough on its
+    // own: positive signals can be faked, so they may not talk it down below
+    // "high".
+    var level = scoreToLevel(score);
+    if (findings.some(function (f) { return f.severity === 'critical'; }) && (level === 'low' || level === 'medium')) level = 'high';
+    var serious = findings.some(function (f) { return f.severity !== 'info'; });
+
     return {
       score: score,
-      level: scoreToLevel(score),
+      level: level,
+      verified: level === 'low' && findings.some(function (f) { return f.id === 'brand_official' || f.id === 'auth_pass'; }),
+      insufficient: !fromDomain && !serious,
       findings: findings,
       sender: { from: from, fromDomain: fromDomain, replyTo: replyTo, replyToDomain: replyToDomain },
       brands: brands,
@@ -543,7 +630,7 @@
     };
   }
 
-  var api = { analyze: analyze, BRANDS: BRANDS, version: '0.1.0' };
+  var api = { analyze: analyze, BRANDS: BRANDS, version: '0.2.0' };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   global.SponsirChecker = api;
 })(typeof window !== 'undefined' ? window : this);
