@@ -15,7 +15,7 @@
   <div class="container">
     <a href="/" class="back">&larr; Back to Sponsir</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 19, 2026</p>
+    <p class="updated">Last updated: September 24, 2026</p>
 
     <p>Sponsir ("the extension") is made by House of Arqam Ventures LLC ("we"). This policy describes what the extension and this website do with data. The short version: the extension and the free Pitch Checker work locally in your browser, we do not run analytics or tracking, and the only data that leaves your browser is what is needed to sell and verify a license, your email address if you join the waitlist, and an anonymous verdict-level count when you use the Pitch Checker.</p>
 
@@ -34,6 +34,9 @@
 
     <h2>Data sent to our licensing service</h2>
     <p>When you start a trial, buy Pro, or activate a license, the extension contacts our licensing service (a Cloudflare Worker at <code>license.sponsir.app</code>). It sends only what is needed for that action: the random installation identifier, an anonymous visitor identifier (for trials), the plan you chose, and your license key. The service stores your license status and the list of installation identifiers using it. It never receives page content or browsing activity.</p>
+
+    <h2>IP addresses and logs</h2>
+    <p>Like any web server, our licensing service sees the IP address of each request it receives (license checks, trials, the waitlist and the Pitch Checker counter). We use it only to limit abuse: the service keeps a request count per IP address for at most 24 hours. The service runs on Cloudflare, whose request logs (including the IP address and the address requested) we keep for a few days to debug problems. We don't use IP addresses to identify, profile or track you.</p>
 
     <h2>Payments</h2>
     <p>Purchases are processed by <a href="https://www.paddle.com" rel="noopener">Paddle</a>, our merchant of record. Paddle collects your payment details and billing address, handles taxes and invoices, and tells us when a purchase completes so we can issue your license key. We never see your card number. Paddle's handling of your data is described in <a href="https://www.paddle.com/legal/privacy" rel="noopener">Paddle's privacy policy</a>.</p>
