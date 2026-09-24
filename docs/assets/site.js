@@ -60,6 +60,7 @@
 
   async function submit(form) {
     const input = form.querySelector('input[type="email"]');
+    const honeypot = form.querySelector('input[name="website"]');
     const button = form.querySelector('button');
     const status = form.parentElement.querySelector('.form-status');
     const email = input.value.trim();
@@ -85,13 +86,11 @@
       const res = await fetch(config.waitlistEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: sourceFor(form) })
+        body: JSON.stringify({ email, source: sourceFor(form), website: honeypot ? honeypot.value : '' })
       });
-      const data = await res.json().catch(() => ({}));
       if (res.ok) {
-        status.textContent = data.already
-          ? 'You\u2019re already on the list \u2014 we\u2019ll be in touch.'
-          : 'You\u2019re in. We\u2019ll email you when the extension is ready.';
+        // The Worker answers the same way for new and existing addresses.
+        status.textContent = 'Almost there \u2014 check your inbox and click the link to confirm your spot.';
         status.classList.add('ok');
         form.reset();
       } else if (res.status === 429) {
