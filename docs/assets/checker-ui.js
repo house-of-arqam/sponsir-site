@@ -84,7 +84,8 @@ Maya`
     }
     const result = engine.analyze(text);
     render(result);
-    ping(result.level);
+    // "Not enough to judge" isn't a check; don't count it as a low-risk one.
+    if (!result.insufficient) ping(result.level);
   }
 
   // Anonymous counter for the validation gate: level only, never content.

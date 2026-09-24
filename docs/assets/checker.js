@@ -333,21 +333,41 @@
   }
 
   function extractAttachments(text) {
+    var out = [];
+    var isFileExt = function (ext) {
+      return DANGEROUS_EXT.indexOf(ext) !== -1 || ARCHIVE_EXT.indexOf(ext) !== -1 || ['pdf', 'docx', 'doc', 'xlsx', 'pptx'].indexOf(ext) !== -1;
+    };
+    // An "Attachments:" line (what the extension appends from Gmail's chips,
+    // or what a user pastes) lists real files by name, spaces and all.
+    text = text.replace(/^\s*attachments?\s*:\s*(.+)$/gim, function (_line, list) {
+      list.split(',').forEach(function (raw) {
+        var name = raw.trim();
+        var m = name.match(/\.([a-z0-9]{2,5})$/i);
+        if (m && isFileExt(m[1].toLowerCase())) out.push({ name: name, ext: m[1].toLowerCase() });
+      });
+      return ' ';
+    });
     text = text
       .replace(/\bhttps?:\/\/[^\s<>"')\]]+|\bwww\.[^\s<>"')\]]+/gi, ' ')
       .replace(/[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z0-9-]{2,}/gi, ' ')
       .replace(/\b(?:[a-z0-9-]+\.)+(?:com|net|org|io|co|app|tv|me|ai|dev|uk|de|fr|ca|au|in)\b/gi, ' ');
     var names = text.match(/\b[\w\-. ()[\]]{1,80}\.([a-z0-9]{2,5})\b/gi) || [];
-    var out = [];
     names.forEach(function (n) {
       var ext = n.split('.').pop().toLowerCase();
-      if (DANGEROUS_EXT.indexOf(ext) !== -1 || ARCHIVE_EXT.indexOf(ext) !== -1 || ['pdf', 'docx', 'doc', 'xlsx', 'pptx'].indexOf(ext) !== -1) {
-        if (/^(www|https?)\b/i.test(n) || /@/.test(n)) return;
-        if (AMBIGUOUS_EXT.indexOf(ext) !== -1 && !looksLikeFile(n, text)) return;
-        out.push({ name: n.trim(), ext: ext });
-      }
+      if (!isFileExt(ext)) return;
+      if (/^(www|https?)\b/i.test(n) || /@/.test(n)) return;
+      if (AMBIGUOUS_EXT.indexOf(ext) !== -1 && !looksLikeFile(n, text)) return;
+      // In prose the match runs back over the sentence ("...is attached as
+      // Agreement.scr"); the file name is the last word.
+      out.push({ name: n.trim().split(/\s+/).pop(), ext: ext });
     });
-    return out;
+    var seen = {};
+    return out.filter(function (a) {
+      var key = a.name.toLowerCase();
+      if (seen[key]) return false;
+      seen[key] = true;
+      return true;
+    });
   }
 
   function looksLikeFile(name, text) {
@@ -382,8 +402,21 @@
     var out = [];
     var re = /\b(\d+|one|two|three|four|five|six|a|an)\s+(?:x\s+)?(dedicated|integrated|integration|sponsored|short[- ]form|long[- ]form|\d{1,3}[- ]?(?:second|sec|minute|min))?\s*(video|videos|integration|integrations|short|shorts|reel|reels|tiktok|tiktoks|story|stories|post|posts|stream|streams|mention|mentions|tweet|tweets|newsletter|podcast|episode|episodes|ad read|ad reads|pre-roll|mid-roll)\b/gi;
     var m;
-    while ((m = re.exec(text)) !== null) out.push(m[0].replace(/\s+/g, ' ').trim());
-    return unique(out);
+    while ((m = re.exec(text)) !== null) out.push({ text: m[0].replace(/\s+/g, ' ').trim(), count: m[1], noun: m[3] });
+    // "one video", "one dedicated video" and "1 dedicated video" in the same
+    // email are one deliverable: group by count and noun, keep the most
+    // specific wording.
+    var words = { one: 1, a: 1, an: 1, two: 2, three: 3, four: 4, five: 5, six: 6 };
+    var groups = {};
+    var order = [];
+    out.forEach(function (d) {
+      var count = words[d.count.toLowerCase()] || Number(d.count);
+      var noun = d.noun.toLowerCase().replace(/s$/, '');
+      var key = count + ' ' + noun;
+      if (!(key in groups)) order.push(key);
+      if (!groups[key] || d.text.length > groups[key].length) groups[key] = d.text;
+    });
+    return order.map(function (k) { return groups[k]; });
   }
 
   function extractExclusivity(text) {
