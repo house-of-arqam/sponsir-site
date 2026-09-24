@@ -402,7 +402,14 @@
     var out = [];
     var re = /\b(\d+|one|two|three|four|five|six|a|an)\s+(?:x\s+)?(dedicated|integrated|integration|sponsored|short[- ]form|long[- ]form|\d{1,3}[- ]?(?:second|sec|minute|min))?\s*(video|videos|integration|integrations|short|shorts|reel|reels|tiktok|tiktoks|story|stories|post|posts|stream|streams|mention|mentions|tweet|tweets|newsletter|podcast|episode|episodes|ad read|ad reads|pre-roll|mid-roll)\b/gi;
     var m;
-    while ((m = re.exec(text)) !== null) out.push({ text: m[0].replace(/\s+/g, ' ').trim(), count: m[1], noun: m[3] });
+    while ((m = re.exec(text)) !== null) {
+      // "an integration in a long-form video" says where the integration goes,
+      // not a second deliverable: an a/an/one right after a preposition is a
+      // placement.
+      var before = text.slice(Math.max(0, m.index - 12), m.index);
+      if (/^(a|an|one)$/i.test(m[1]) && /\b(in|into|within|inside|during|on|of)\s+$/i.test(before)) continue;
+      out.push({ text: m[0].replace(/\s+/g, ' ').trim(), count: m[1], noun: m[3] });
+    }
     // "one video", "one dedicated video" and "1 dedicated video" in the same
     // email are one deliverable: group by count and noun, keep the most
     // specific wording.
@@ -423,7 +430,12 @@
     var m = text.match(/\b(\d+)[- ]?(day|week|month|year)s?\s+(?:of\s+)?(?:category\s+)?exclusiv/i)
       || text.match(/exclusiv\w+\s+(?:for|of|period of)\s+(\d+)[- ]?(day|week|month|year)s?/i);
     if (m) return m[1] + ' ' + m[2] + (Number(m[1]) === 1 ? '' : 's');
-    if (/\bexclusiv/i.test(text)) return 'mentioned, duration unclear';
+    // Only exclusivity in the deal sense: "exclusivity", "category exclusive",
+    // "exclusive for / period / rights". Scam and promo copy says "exclusive
+    // code", "exclusive offer" or "exclusive access", which is not a term.
+    if (/\bexclusivity\b|\b(category|competitor|industry|brand|product)[- ]exclusiv|\bexclusiv\w*\s+(for\b|period|window|rights?|clause|term|agreement|partner)/i.test(text)) {
+      return 'mentioned, duration unclear';
+    }
     return null;
   }
 
